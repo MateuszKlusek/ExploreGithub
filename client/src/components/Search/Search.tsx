@@ -17,11 +17,11 @@ import { KeyboardNavigationContext } from '../../context/KeyboardNavigationConte
 import { useWindowSize } from '../../hooks/useWindowSize.js'
 
 // components
-import KeyboardNavigation from '../KeyboardNavigation/KeyboardNavigation.jsx'
-import PalettePicker from '../PalettePicker/PalettePicker.jsx'
-import KeyboardIcon from '../KeyboardIcon/KeyboardIcon.jsx'
-import GithubPoints from '../GithubPoints/GithubPoints.jsx'
-import Latest from '../Latest/Latest.jsx'
+import KeyboardNavigation from '../KeyboardNavigation/KeyboardNavigation'
+import PalettePicker from '../PalettePicker/PalettePicker'
+import KeyboardIcon from '../KeyboardIcon/KeyboardIcon'
+import GithubPoints from '../GithubPoints/GithubPoints'
+import Latest from '../Latest/Latest'
 
 // styled components
 import * as S from './Search.styled.jsx'

@@ -1,8 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-function RoutingComponent(props) {
+
+
+const RoutingComponent: React.FC<RoutingComponentProps> = (props) => {
   const navigate = useNavigate()
   useEffect(() => {
     navigate(props.path)

@@ -5,11 +5,11 @@ import { useState, useMemo } from "react"
 import { Routes, Route, useLocation } from "react-router-dom";
 
 // components
-import Search from "./components/Search/Search.jsx";
-import DisplayData from "./components/DisplayData/DisplayData.jsx";
-import RoutingComponent from "./components/RoutingComponent/RoutingComponent.jsx";
-import WebsiteInfo from "./components/WebsiteInfo/WebsiteInfo.jsx";
-import GithubLink from "./components/GithubLink/GithubLink.jsx";
+import Search from "./components/Search/Search";
+import DisplayData from "./components/DisplayData/DisplayData";
+import WebsiteInfo from "./components/WebsiteInfo/WebsiteInfo";
+import GithubLink from "./components/GithubLink/GithubLink";
+import RoutingComponent from "./components/RoutingComponent/RoutingComponent";
 
 // styles
 import * as S from "./App.styled"
@@ -29,7 +29,8 @@ function App() {
 
   // palette context values
   // is localStorage is empty set defaults, it already have sth in it, set it
-  const initialPaletteState = "palette" in localStorage ? JSON.parse(localStorage.getItem("palette")) : {
+  // added non-null assertion operator for typescript, without we have an arror, even though with ternary operator we exclude the possibility of there being an error
+  const initialPaletteState: SinglePaletteColor = "palette" in localStorage ? JSON.parse(localStorage.getItem("palette")!) : {
     color1: "#5D5c61",
     color2: "#379683",
     color3: "#7395AE",

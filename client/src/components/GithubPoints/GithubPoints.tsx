@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import ContentLoader from 'react-content-loader'
 import axios from 'axios'
 import ReactTooltip from 'react-tooltip'
+
+// styles
 import * as S from './GithubPoints.styled'
 
 const MyLoader = () => (
@@ -11,14 +13,14 @@ const MyLoader = () => (
       viewBox="0 0 100 17"
       backgroundColor="#ffffff8f"
       foregroundColor="#d2cccc9d"
-      // height={25}
+    // height={25}
     >
       <rect x="0" y="5" rx="3" ry="3" width="50" height="8" />
     </ContentLoader>
   </S.ContentLoadedContainer>
 )
 
-const ResultOfLimitFetching = (props) => (
+const ResultOfLimitFetching: React.FC<GithubPointsProps> = (props) => (
   <S.RequestPointsValue>
     {props.remainingNumberOfRequests} / {props.limitOfRequests}
   </S.RequestPointsValue>

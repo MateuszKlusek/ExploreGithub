@@ -6,8 +6,8 @@ import { KeyboardNavigationContext } from '../../context/KeyboardNavigationConte
 
 import { paletteColors } from '../../utils/paletteColors.js'
 import gsap from 'gsap'
-import KeyboardIcon from '../KeyboardIcon/KeyboardIcon.jsx'
-import { useWindowSize } from './../../hooks/useWindowSize.js'
+import KeyboardIcon from '../KeyboardIcon/KeyboardIcon.js'
+import { useWindowSize } from '../../hooks/useWindowSize.js'
 
 const PalettePicker = () => {
   const [isSwitcherDisabled, setIsSwitcherDisabled] = useState(false)

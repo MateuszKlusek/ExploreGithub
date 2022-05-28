@@ -69,7 +69,7 @@ const SingleUser = forwardRef((props, ref) => {
     try {
       let imgUrl = URL.createObjectURL(response.data)
       GithubIconRef.current.src = imgUrl
-    } catch (err) {}
+    } catch (err) { }
   }
 
   return (
