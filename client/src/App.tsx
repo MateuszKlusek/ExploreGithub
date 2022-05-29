@@ -38,7 +38,7 @@ function App() {
     color5: "#B1A296"
   }
 
-  const [palette, setPalette] = useState(initialPaletteState)
+  const [palette, setPalette] = useState<SinglePaletteColor>(initialPaletteState)
   const [paletteAnimationEnabled, setPaletteAnimationEnabled] = useState(true)
   const [rolledOut, setRolledOut] = useState(false)
 

@@ -25,7 +25,7 @@ const SmallNumberLoader = () => (
   </ContentLoader>
 )
 
-const GithubNameLoader = (props) => (
+const GithubNameLoader: React.FC<GithubNameLoaderProps> = (props) => (
   <S.ContentLoaderContainer>
     <ContentLoader
       speed={1}
@@ -46,13 +46,16 @@ const SingleUser = forwardRef((props, ref) => {
   const { palette, setPalette } = useContext(PaletteContext)
   const size = useWindowSize()
 
-  const GithubIconRef = useRef()
+  const GithubIconRef = useRef<HTMLImageElement>(null)
+
 
   var data = props.data
 
   useLayoutEffect(() => {
     if (Object.keys(data).length === 0) {
-      GithubIconRef.current.src = spinner
+      if (GithubIconRef && GithubIconRef.current) {
+        GithubIconRef.current.src = spinner
+      }
     } else {
       getGithubAvatar()
     }
@@ -68,9 +71,12 @@ const SingleUser = forwardRef((props, ref) => {
     })
     try {
       let imgUrl = URL.createObjectURL(response.data)
-      GithubIconRef.current.src = imgUrl
+      if (GithubIconRef && GithubIconRef.current) {
+        GithubIconRef.current.src = imgUrl
+      }
     } catch (err) { }
   }
+
 
   return (
     <S.SingleUser
@@ -85,7 +91,7 @@ const SingleUser = forwardRef((props, ref) => {
       <S.GithubName>
         {Object.keys(data).length === 0 ? (
           <GithubNameLoader
-            size={size.width > 768 ? '100px' : size.width > 425 ? '80px' : '100px'}
+            size={size.width! > 768 ? '100px' : size.width! > 425 ? '80px' : '100px'}
           />
         ) : (
           `@${data.profileURL}`
@@ -114,7 +120,7 @@ const SingleUser = forwardRef((props, ref) => {
           <S.GitHubStatText>repos</S.GitHubStatText>
         </S.GitHubStat>
       </S.GitHubStats>
-    </S.SingleUser>
+    </S.SingleUser >
   )
 })
 

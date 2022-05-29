@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 import { device } from '../../utils/device'
 
+
+
 export const SingleUser = styled.div`
   cursor: pointer;
   display: grid;
@@ -21,7 +23,7 @@ export const SingleUser = styled.div`
 
   &:hover {
     background: ${(props) =>
-      `rgba(${props.color.red},${props.color.green},${props.color.blue},0.8)`};
+    `rgba(${props.color.red},${props.color.green},${props.color.blue},0.8)`};
     box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.25);
     transform: translateY(-8px);
   }
@@ -34,7 +36,7 @@ export const SingleUser = styled.div`
 
     &:hover {
       background: ${(props) =>
-        `rgba(${props.color.red},${props.color.green},${props.color.blue},0.8)`};
+    `rgba(${props.color.red},${props.color.green},${props.color.blue},0.8)`};
       transform: translateX(4px);
     }
   }
@@ -47,7 +49,7 @@ export const SingleUser = styled.div`
 
     &:hover {
       background: ${(props) =>
-        `rgba(${props.color.red},${props.color.green},${props.color.blue},0.8)`};
+    `rgba(${props.color.red},${props.color.green},${props.color.blue},0.8)`};
       transform: translateX(4px);
     }
   }

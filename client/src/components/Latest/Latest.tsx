@@ -1,25 +1,31 @@
-import React, {
+import {
   useState,
   useEffect,
   useContext,
   useRef,
-  forwardRef,
   memo,
-  useLayoutEffect,
-  Suspense,
-  lazy,
   useDebugValue,
 } from 'react'
+
+import { useNavigate } from 'react-router-dom'
+
 import axios from 'axios'
 import { v4 as uuidv4 } from 'uuid'
-import SingleUser from '../SingleUser/SingleUser.jsx'
+
+// components
+import SingleUser from '../SingleUser/SingleUser'
+
+// styles
+import * as S from './Latest.styled'
+
+// context
 import { PaletteContext } from '../../context/PaletteContext.js'
 import { BlobContext } from '../../context/BlobContext.js'
-import { useNavigate } from 'react-router-dom'
-import { axiosURL } from '../../config/axios.js'
-import * as S from './Latest.styled.jsx'
-import { KeyboardNavigationContext } from '../../context/KeyboardNavigationContext.js'
 import { SearchContext } from '../../context/SearchContext.js'
+import { KeyboardNavigationContext } from '../../context/KeyboardNavigationContext.js'
+
+// helpers
+import { axiosURL } from '../../config/axios.js'
 import { sleep } from '../../helpers/sleep.js'
 
 const Latest = memo((props) => {

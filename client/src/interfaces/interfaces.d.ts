@@ -6,6 +6,13 @@ interface SinglePaletteColor {
   color5: string
 }
 
+interface IWindowSize {
+  size: {
+    width: number | undefined
+    height: number | undefined
+  }
+}
+
 interface RoutingComponentProps {
   path: string
 }
@@ -13,4 +20,9 @@ interface RoutingComponentProps {
 interface GithubPointsProps {
   limitOfRequests: string
   remainingNumberOfRequests: string
+}
+
+// SingleUser
+interface GithubNameLoaderProps {
+  size: string
 }
