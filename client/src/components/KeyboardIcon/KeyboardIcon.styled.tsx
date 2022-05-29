@@ -7,12 +7,6 @@ interface KeyboardIconContainerProps {
   right: string
 }
 
-interface KeyProps {
-  top: string
-  left: string
-  right: string
-}
-
 export const KeyboardIconContainer = styled.div<KeyboardIconContainerProps>`
   height: 50px;
   width: 150px;
@@ -48,6 +42,12 @@ export const SVG = styled.svg`
     }
   }
 `;
+
+interface KeyProps {
+  top: string
+  left: string
+  right: string
+}
 
 export const Key = styled.div<KeyProps>`
   position: absolute;

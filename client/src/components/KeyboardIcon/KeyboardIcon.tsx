@@ -10,7 +10,7 @@ interface Ishape_straight {
 }
 
 const KeyboardIcon: React.FC<KeyboardIconProps> = ({ buttonKey, vertical, horizontal, shape, size, left, right, top, bottom }) => {
-  const svgKeyRef = useRef<SVGSVGElement>(null);
+  const svgKeyRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const animate = async () => {
       var tl = gsap.timeline();
@@ -82,6 +82,7 @@ const KeyboardIcon: React.FC<KeyboardIconProps> = ({ buttonKey, vertical, horizo
         <polyline points={`${points}`} stroke="gray" strokeWidth="2" />
       </S.SVG>
       <S.Key
+        ref={svgKeyRef}
         right={shape === "straight" ? shape_straight.right : shape_curved.right}
         left={shape === "straight" ? shape_straight.left : shape_curved.left}
         top={shape === "straight" ? "20px" : "-2px"}

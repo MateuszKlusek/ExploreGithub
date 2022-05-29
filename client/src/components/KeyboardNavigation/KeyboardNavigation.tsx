@@ -7,7 +7,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 
 import * as S from './KeyboardNavigation.styled'
 
-const KeyboardNavigation: FC<KeyboardNavigationProps> = (props) => {
+const KeyboardNavigation: FC<KeyboardNavigationProps> = ({ top, opacity }) => {
   const { Refs, visibility } = useContext(KeyboardNavigationContext)
   const { keysVisible, setKeysVisible } = visibility
 
@@ -119,7 +119,7 @@ const KeyboardNavigation: FC<KeyboardNavigationProps> = (props) => {
   return (
     <S.KeyboardNavigationContainer
       onClick={() => setKeysVisible((prev: boolean) => !prev)}
-      top={props.top}
+      top={top}
       opacity={keysVisible ? 0.8 : 0.3}
     />
   )

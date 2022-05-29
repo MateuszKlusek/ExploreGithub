@@ -10,7 +10,7 @@ export const KeyboardNavigationContainer = styled.div<IKeyboardNavigationContain
   /* border: 1px solid black; */
   position: absolute;
   left: 20px;
-  top: ${(props) => props.top};
+  top: ${(props) => `${props.top}px`};
   cursor: pointer;
   /* box-shadow: 0px 0px 24px 8px rgba(173,173,146,0.6);
     background: rgba(173,173,146,0.5); */
