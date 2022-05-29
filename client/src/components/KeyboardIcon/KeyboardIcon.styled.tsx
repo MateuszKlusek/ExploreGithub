@@ -1,6 +1,19 @@
 import styled from "styled-components";
 
-export const KeyboardIconContainer = styled.div`
+
+interface KeyboardIconContainerProps {
+  top: string
+  left: string
+  right: string
+}
+
+interface KeyProps {
+  top: string
+  left: string
+  right: string
+}
+
+export const KeyboardIconContainer = styled.div<KeyboardIconContainerProps>`
   height: 50px;
   width: 150px;
   border-radius: 5px;
@@ -36,7 +49,7 @@ export const SVG = styled.svg`
   }
 `;
 
-export const Key = styled.div`
+export const Key = styled.div<KeyProps>`
   position: absolute;
   top: ${(props) => props.top};
   right: ${(props) => props.right};

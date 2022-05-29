@@ -1,12 +1,16 @@
-import React, { useEffect, useRef, memo } from "react";
+import { useEffect, useRef, memo } from "react";
 
 import gsap from "gsap";
 
 import * as S from "./KeyboardIcon.styled";
 
-const KeyboardIcon = (props) => {
-  const svgKeyRef = useRef();
+interface Ishape_straight {
+  right?: string
+  left?: string
+}
 
+const KeyboardIcon: React.FC<KeyboardIconProps> = ({ buttonKey, vertical, horizontal, shape, size, left, right, top, bottom }) => {
+  const svgKeyRef = useRef<SVGSVGElement>(null);
   useEffect(() => {
     const animate = async () => {
       var tl = gsap.timeline();
@@ -18,10 +22,6 @@ const KeyboardIcon = (props) => {
     animate();
   }, []);
 
-  var vertical = props.vertical;
-  var horizontal = props.horizontal;
-  var shape = props.shape;
-  var size = props.size;
   var points;
 
   if (vertical === "top") {
@@ -48,7 +48,9 @@ const KeyboardIcon = (props) => {
     }
   }
 
-  var shape_straight = {};
+
+
+  var shape_straight: Ishape_straight = {};
   if (horizontal === "left") {
     if (size === "large") {
       shape_straight.right = "140px";
@@ -72,20 +74,19 @@ const KeyboardIcon = (props) => {
 
   return (
     <S.KeyboardIconContainer
-      left={props.left === undefined ? `auto` : `${props.left}px`}
-      right={props.right === undefined ? `auto` : `${props.right}px`}
-      top={props.top === undefined ? `-25px` : `${props.top - 25}px`}
+      left={left === undefined ? `auto` : `${left}px`}
+      right={right === undefined ? `auto` : `${right}px`}
+      top={top === undefined ? `-25px` : `${top - 25}px`}
     >
       <S.SVG viewBox="0 0 150 50" fill="none">
         <polyline points={`${points}`} stroke="gray" strokeWidth="2" />
       </S.SVG>
       <S.Key
-        ref={svgKeyRef}
         right={shape === "straight" ? shape_straight.right : shape_curved.right}
         left={shape === "straight" ? shape_straight.left : shape_curved.left}
         top={shape === "straight" ? "20px" : "-2px"}
       >
-        {props.buttonKey}
+        {buttonKey}
       </S.Key>
     </S.KeyboardIconContainer>
   );

@@ -4,13 +4,10 @@ import {
   useContext,
   useRef,
   memo,
-  useDebugValue,
 } from 'react'
 
-import { useNavigate } from 'react-router-dom'
 
 import axios from 'axios'
-import { v4 as uuidv4 } from 'uuid'
 
 // components
 import SingleUser from '../SingleUser/SingleUser'
@@ -26,10 +23,9 @@ import { KeyboardNavigationContext } from '../../context/KeyboardNavigationConte
 
 // helpers
 import { axiosURL } from '../../config/axios.js'
-import { sleep } from '../../helpers/sleep.js'
 
 const Latest = memo((props) => {
-  const [latestThree, setLatestThree] = useState([{}, {}, {}])
+  const [latestThree, setLatestThree] = useState<ISingleUserData[]>([{}, {}, {}])
   const [githubAvatarsLoaded, setGithubAvatarsLoaded] = useState(false)
 
   const { profileQuery, setProfileQuery } = useContext(SearchContext)
@@ -45,7 +41,7 @@ const Latest = memo((props) => {
     getLatestThree()
   }, [])
 
-  useDebugValue({ latestThree: latestThree ?? 'loading...' })
+  // useDebugValue({ latestThree: latestThree ?? 'loading...' })
   // check if the github icons are loaded
   // useEffect(()=>{
   //     const interval = setInterval(() => {
@@ -67,7 +63,6 @@ const Latest = memo((props) => {
   //     return () => clearInterval(interval);
   // },[])
 
-  const initialRender = useRef(true)
   //   useLayoutEffect(() => {
   //     if (initialRender.current) {
   //       initialRender.current = false
@@ -82,8 +77,13 @@ const Latest = memo((props) => {
   //     }
   //   }, [palette, keysVisible, paletteAnimationEnabled, profileQuery])
 
+  const initialRender = useRef(true)
   useEffect(() => {
-    // console.log(latestThree)
+    if (initialRender.current) {
+      initialRender.current = false
+    } else {
+      console.log(latestThree)
+    }
   }, [latestThree])
 
   const getLatestThree = async () => {
@@ -92,12 +92,11 @@ const Latest = memo((props) => {
       url: `${axiosURL}/getLatestThree`,
     })
     setLatestThree(response.data.data)
-
     // after the component is rendered, get avatars
-    // getGithubAvatarUrl(response.data.data)
+    getGithubAvatarUrl(response.data.data)
   }
 
-  const getGithubAvatarUrl = async (data) => {
+  const getGithubAvatarUrl = async (data: any) => {
     // for (var i = 0; i < 3; i++) {
     //   SingleUserRef.current[i].src = spinner
     // }
@@ -121,9 +120,9 @@ const Latest = memo((props) => {
     <S.LatestContainer>
       <S.LatestTitle> Latest profiles </S.LatestTitle>
       <S.SingleUsersContainer>
-        <SingleUser data={latestThree[0] ?? null} />
-        <SingleUser data={latestThree[1] ?? null} />
-        <SingleUser data={latestThree[2] ?? null} />
+        <SingleUser data={latestThree[0]} />
+        <SingleUser data={latestThree[1]} />
+        <SingleUser data={latestThree[2]} />
       </S.SingleUsersContainer>
     </S.LatestContainer>
   )

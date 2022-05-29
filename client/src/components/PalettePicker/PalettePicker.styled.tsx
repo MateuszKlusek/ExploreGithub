@@ -16,7 +16,14 @@ export const SingleColor = styled.div`
   width: 20px;
 `
 
-export const PaletteContainer = styled.div`
+interface IPaletteContainer {
+  opacity: string
+  top: string
+  display: string
+}
+
+
+export const PaletteContainer = styled.div<IPaletteContainer>`
   opacity: ${(props) => props.opacity};
   position: absolute;
   top: ${(props) => props.top};

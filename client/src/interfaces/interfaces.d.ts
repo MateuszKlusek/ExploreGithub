@@ -26,3 +26,19 @@ interface GithubPointsProps {
 interface GithubNameLoaderProps {
   size: string
 }
+
+interface ISingleUserData {
+  data?: any
+}
+
+interface KeyboardIconProps {
+  buttonKey: string
+  horizontal: 'left' | 'right'
+  vertical: 'top' | 'bottom'
+  shape?: string
+  size?: string
+  right?: number
+  left?: number
+  top?: number
+  bottom?: number
+}

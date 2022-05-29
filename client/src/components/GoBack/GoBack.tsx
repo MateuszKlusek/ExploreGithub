@@ -9,7 +9,7 @@ import gsap from 'gsap'
 import { KeyboardNavigationContext } from '../../context/KeyboardNavigationContext.js'
 
 // styles
-import * as S from './GoBack.styled.jsx'
+import * as S from './GoBack.styled'
 
 const GoBack = (props) => {
   const { Refs, visibility } = useContext(KeyboardNavigationContext)

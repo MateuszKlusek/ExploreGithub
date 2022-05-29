@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useContext, useRef } from 'react'
 
-import * as S from './PalettePicker.styled.jsx'
+import * as S from './PalettePicker.styled'
 import { PaletteContext } from '../../context/PaletteContext.js'
 import { KeyboardNavigationContext } from '../../context/KeyboardNavigationContext.js'
 
 import { paletteColors } from '../../utils/paletteColors.js'
 import gsap from 'gsap'
-import KeyboardIcon from '../KeyboardIcon/KeyboardIcon.js'
-import { useWindowSize } from '../../hooks/useWindowSize.js'
+import KeyboardIcon from '../KeyboardIcon/KeyboardIcon'
+import { useWindowSize } from '../../hooks/useWindowSize'
 
 const PalettePicker = () => {
   const [isSwitcherDisabled, setIsSwitcherDisabled] = useState(false)
@@ -23,14 +23,14 @@ const PalettePicker = () => {
   const { Refs, visibility } = useContext(KeyboardNavigationContext)
   const { keysVisible, setKeysVisible } = visibility
 
-  const FirstColorRef = useRef()
-  const SecondColorRef = useRef()
-  const ThirdColorRef = useRef()
-  const FourthColorRef = useRef()
+  const FirstColorRef = useRef<HTMLDivElement>(null)
+  const SecondColorRef = useRef<HTMLDivElement>(null)
+  const ThirdColorRef = useRef<HTMLDivElement>(null)
+  const FourthColorRef = useRef<HTMLDivElement>(null)
 
-  const SwitcherContainerRef = useRef()
-  const MainPaletteRef = useRef()
-  const PaletteRestRef = useRef([])
+  const SwitcherContainerRef = useRef<HTMLDivElement>(null)
+  const MainPaletteRef = useRef<HTMLDivElement>(null)
+  const PaletteRestRef = useRef<HTMLDivElement[]>([])
 
   const size = useWindowSize()
 
@@ -41,7 +41,9 @@ const PalettePicker = () => {
   const rollOut = () => {
     var tl = gsap.timeline({
       onComplete: () => {
-        SwitcherContainerRef.current.style.pointerEvents = 'auto'
+        if (SwitcherContainerRef.current) {
+          SwitcherContainerRef.current.style.pointerEvents = 'auto';
+        }
         setIsSwitcherDisabled(false)
         setRolledOut(true)
         setPaletteAnimationEnabled(true)
@@ -84,7 +86,9 @@ const PalettePicker = () => {
   const rollIn = () => {
     var tl = gsap.timeline({
       onComplete: () => {
-        SwitcherContainerRef.current.style.pointerEvents = 'auto'
+        if (SwitcherContainerRef.current) {
+          SwitcherContainerRef.current.style.pointerEvents = 'auto'
+        }
         setIsSwitcherDisabled(false)
         setRolledOut(false)
         setPaletteAnimationEnabled(true)
@@ -159,10 +163,11 @@ const PalettePicker = () => {
       >
         {rolledOut && keysVisible ? (
           <KeyboardIcon
-            buttonKey={Number(el) + 2}
+            buttonKey={(Number(el) + 2) + ""}
             shape={'straight'}
-            size={size.width > 600 ? 'large' : 'small'}
+            size={size.width! > 600 ? 'large' : 'small'}
             horizontal={'left'}
+            vertical={"top"}
             right={0}
             top={5}
           />
@@ -185,19 +190,23 @@ const PalettePicker = () => {
           if (rolledOut) {
             setIsSwitcherDisabled(true)
             setPaletteAnimationEnabled(false)
-            SwitcherContainerRef.current.style.pointerEvents = 'none'
+            if (SwitcherContainerRef.current) {
+              SwitcherContainerRef.current.style.pointerEvents = 'none'
+            }
             rollIn()
           } else {
             setIsSwitcherDisabled(true)
             setPaletteAnimationEnabled(false)
-            SwitcherContainerRef.current.style.pointerEvents = 'none'
+            if (SwitcherContainerRef.current) {
+              SwitcherContainerRef.current.style.pointerEvents = 'none'
+            }
             rollOut()
           }
         }
       }}
       ref={SwitcherContainerRef}
     >
-      <S.PaletteContainer top={'0px'} opacity={'1'} display={'grid'} ref={MainPaletteRef}>
+      <S.PaletteContainer top={'0'} opacity={'1'} display={'grid'} ref={MainPaletteRef}>
         <S.SingleColor ref={ThirdColorRef} color={palette.color3} />
         <S.SingleColor ref={FourthColorRef} color={palette.color4} />
         <S.SingleColor ref={SecondColorRef} color={palette.color2} />
@@ -206,8 +215,9 @@ const PalettePicker = () => {
           <KeyboardIcon
             buttonKey={'1'}
             shape={'straight'}
-            size={size.width > 600 ? 'large' : 'small'}
+            size={size.width! > 600 ? 'large' : 'small'}
             horizontal={'left'}
+            vertical={"top"}
             right={0}
             top={25}
           />

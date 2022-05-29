@@ -9,8 +9,8 @@ import spinner from './spinnerAvatar.gif'
 import { useLocation } from 'react-router-dom'
 
 // components
-import PalettePicker from './../PalettePicker/PalettePicker.jsx'
-import GoBack from '../GoBack/GoBack.jsx'
+import PalettePicker from './../PalettePicker/PalettePicker'
+import GoBack from '../GoBack/GoBack'
 import KeyboardIcon from '../KeyboardIcon/KeyboardIcon'
 import KeyboardNavigation from '../KeyboardNavigation/KeyboardNavigation'
 
@@ -19,7 +19,7 @@ import { PaletteContext } from './../../context/PaletteContext.js'
 import { KeyboardNavigationContext } from '../../context/KeyboardNavigationContext.js'
 
 // styles
-import * as S from './DisplayData.styled.jsx'
+import * as S from './DisplayData.styled'
 
 function DisplayData(props) {
   // get data from router (from Search component)
@@ -52,7 +52,7 @@ function DisplayData(props) {
     try {
       let imgUrl = URL.createObjectURL(response.data)
       avatarRef.current.src = imgUrl
-    } catch (err) {}
+    } catch (err) { }
   }
 
   return (

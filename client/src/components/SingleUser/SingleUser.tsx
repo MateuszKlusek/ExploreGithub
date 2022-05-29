@@ -1,6 +1,6 @@
-import React, { useEffect, forwardRef, useContext, useRef, useLayoutEffect } from 'react'
+import { useContext, useRef, useLayoutEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import * as S from './SingleUser.styled.jsx'
+import * as S from './SingleUser.styled'
 import { faUserFriends, faFolder } from '@fortawesome/free-solid-svg-icons'
 import gsap from 'gsap'
 import axios from 'axios'
@@ -10,9 +10,10 @@ import hexRgb from 'hex-rgb'
 import { PaletteContext } from '../../context/PaletteContext.js'
 import ContentLoader from 'react-content-loader'
 
-import { useWindowSize } from '../../hooks/useWindowSize.js'
+import { useWindowSize } from '../../hooks/useWindowSize'
 
 import spinner from './spinnerAvatar.gif'
+import { createGlobalStyle } from 'styled-components'
 
 const SmallNumberLoader = () => (
   <ContentLoader
@@ -25,7 +26,7 @@ const SmallNumberLoader = () => (
   </ContentLoader>
 )
 
-const GithubNameLoader: React.FC<GithubNameLoaderProps> = (props) => (
+const GithubNameLoader: React.FC<GithubNameLoaderProps> = ({ size }) => (
   <S.ContentLoaderContainer>
     <ContentLoader
       speed={1}
@@ -34,12 +35,12 @@ const GithubNameLoader: React.FC<GithubNameLoaderProps> = (props) => (
       backgroundColor="#ffffff99"
       foregroundColor="#d2cccc99"
     >
-      <rect x="0" y="4" rx="3" ry="3" width={props.size} height="4" />
+      <rect x="0" y="4" rx="3" ry="3" width={size} height="4" />
     </ContentLoader>
   </S.ContentLoaderContainer>
 )
 
-const SingleUser = forwardRef((props, ref) => {
+const SingleUser: React.FC<ISingleUserData> = ({ data }) => {
   const { Refs, visibility } = useContext(KeyboardNavigationContext)
   const { keysVisible, setKeysVisible } = visibility
 
@@ -47,9 +48,6 @@ const SingleUser = forwardRef((props, ref) => {
   const size = useWindowSize()
 
   const GithubIconRef = useRef<HTMLImageElement>(null)
-
-
-  var data = props.data
 
   useLayoutEffect(() => {
     if (Object.keys(data).length === 0) {
@@ -80,7 +78,9 @@ const SingleUser = forwardRef((props, ref) => {
 
   return (
     <S.SingleUser
-      color={hexRgb(palette.color2)}
+      red={hexRgb(palette.color2).red}
+      green={hexRgb(palette.color2).green}
+      blue={hexRgb(palette.color2).blue}
       onClick={() => {
         setKeysVisible(false)
         gsap.globalTimeline.getChildren().forEach((t) => t.kill())
@@ -122,6 +122,6 @@ const SingleUser = forwardRef((props, ref) => {
       </S.GitHubStats>
     </S.SingleUser >
   )
-})
+}
 
 export default SingleUser

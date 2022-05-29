@@ -3,14 +3,22 @@ import { device } from '../../utils/device'
 
 
 
-export const SingleUser = styled.div`
+interface ISingleUser {
+  red: number
+  green: number
+  blue: number
+}
+
+
+
+export const SingleUser = styled.div<ISingleUser>`
   cursor: pointer;
   display: grid;
   min-width: 300px;
   max-width: 350px;
   min-height: 60px;
 
-  background: ${(props) => `rgba(${props.color.red},${props.color.green},${props.color.blue},0.7)`};
+  background: ${(props) => `rgba(${props.red},${props.green},${props.blue},0.7)`};
   padding: 10px;
   border-radius: 5px;
   transition: all 350ms;
@@ -23,7 +31,7 @@ export const SingleUser = styled.div`
 
   &:hover {
     background: ${(props) =>
-    `rgba(${props.color.red},${props.color.green},${props.color.blue},0.8)`};
+    `rgba(${props.red},${props.green},${props.blue},0.8)`};
     box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.25);
     transform: translateY(-8px);
   }
@@ -36,7 +44,7 @@ export const SingleUser = styled.div`
 
     &:hover {
       background: ${(props) =>
-    `rgba(${props.color.red},${props.color.green},${props.color.blue},0.8)`};
+    `rgba(${props.red},${props.green},${props.blue},0.8)`};
       transform: translateX(4px);
     }
   }
@@ -49,7 +57,7 @@ export const SingleUser = styled.div`
 
     &:hover {
       background: ${(props) =>
-    `rgba(${props.color.red},${props.color.green},${props.color.blue},0.8)`};
+    `rgba(${props.red},${props.green},${props.blue},0.8)`};
       transform: translateX(4px);
     }
   }

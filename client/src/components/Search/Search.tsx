@@ -14,7 +14,7 @@ import { PaletteContext } from '../../context/PaletteContext.js'
 import { KeyboardNavigationContext } from '../../context/KeyboardNavigationContext.js'
 
 // custom hooks
-import { useWindowSize } from '../../hooks/useWindowSize.js'
+import { useWindowSize } from '../../hooks/useWindowSize'
 
 // components
 import KeyboardNavigation from '../KeyboardNavigation/KeyboardNavigation'
@@ -24,7 +24,7 @@ import GithubPoints from '../GithubPoints/GithubPoints'
 import Latest from '../Latest/Latest'
 
 // styled components
-import * as S from './Search.styled.jsx'
+import * as S from './Search.styled'
 
 function Search() {
   const [loadPopup, setLoadPopup] = useState(false)

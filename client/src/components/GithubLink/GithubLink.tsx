@@ -1,13 +1,14 @@
-import React, { useLayoutEffect, useRef } from 'react'
+import { useLayoutEffect, useRef } from 'react'
 
-import * as S from './GithubLink.styled.jsx'
+import * as S from './GithubLink.styled'
 
 const GithubLink = () => {
+  const svgRef = useRef<SVGSVGElement>(null)
   useLayoutEffect(() => {
-    svgRef.current.style.transform = 'rotate(315deg)'
+    if (svgRef.current) {
+      svgRef.current.style.transform = 'rotate(315deg)'
+    }
   }, [])
-
-  const svgRef = useRef()
 
   return (
     <S.CornerStyles>
