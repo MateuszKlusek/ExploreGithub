@@ -21,11 +21,10 @@ import { KeyboardNavigationContext } from '../../context/KeyboardNavigationConte
 // styles
 import * as S from './DisplayData.styled'
 
-function DisplayData(props) {
+const DisplayData: React.FC<ISingleUserData> = (props) => {
   // get data from router (from Search component)
   // state should be an object, without nested stuff like data.data
-  const { state } = useLocation()
-  console.log('state passed to DisplayData', state)
+  const { state }: any = useLocation()
 
   // states
   const { palette, setPalette } = useContext(PaletteContext)
@@ -34,12 +33,14 @@ function DisplayData(props) {
   const { Refs, visibility } = useContext(KeyboardNavigationContext)
   const { keysVisible, setKeysVisible } = visibility
 
-  const avatarRef = useRef()
-  const githubURLRef = useRef()
+  const avatarRef = useRef<HTMLImageElement>(null)
+  const githubURLRef = useRef<HTMLDivElement>(null)
   const githubURLArrowRef = useRef()
 
   useLayoutEffect(() => {
-    avatarRef.current.src = spinner
+    if (avatarRef.current) {
+      avatarRef.current.src = spinner
+    }
     getGithubAvatar()
   }, [])
 
@@ -51,7 +52,9 @@ function DisplayData(props) {
     })
     try {
       let imgUrl = URL.createObjectURL(response.data)
-      avatarRef.current.src = imgUrl
+      if (avatarRef.current) {
+        avatarRef.current.src = imgUrl
+      }
     } catch (err) { }
   }
 
@@ -62,7 +65,7 @@ function DisplayData(props) {
         <KeyboardIcon buttonKey={'p'} horizontal={'left'} vertical={'top'} right={40} top={30} />
       )}
       <GoBack color={palette.color3} />
-      <KeyboardNavigation top={'80px'} opacity={'0.3'} />
+      <KeyboardNavigation top={80} opacity={0.3} />
       <S.TopContainer>
         <S.GithubAvatar url={state.url} ref={avatarRef} />
         <S.GithubURLContainer>
@@ -71,8 +74,8 @@ function DisplayData(props) {
             onClick={() => (window.location.href = `http://github.com/${state.profileURL}`)}
           >
             @{state.profileURL}
-          </S.GithubURL>
-        </S.GithubURLContainer>
+          </S.GithubURL >
+        </S.GithubURLContainer >
         <S.GithubJoinDate>
           <S.CalendarIcon />
           Joined {dateFormat(state.created_at, 'longDate')}
@@ -91,10 +94,10 @@ function DisplayData(props) {
             <S.GithubDataText>repositories</S.GithubDataText>
           </S.GithubData>
         </S.GithubDataContainer>
-      </S.TopContainer>
+      </S.TopContainer >
 
       <S.BottomContainer></S.BottomContainer>
-    </S.DisplayDataContainer>
+    </S.DisplayDataContainer >
   )
 }
 

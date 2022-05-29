@@ -46,7 +46,7 @@ function App() {
   const [blobURLs, setBlobURLs] = useState([])
 
   const Refs = {}
-  const [keysVisible, setKeysVisible] = useState(false)
+  const [keysVisible, setKeysVisible] = useState<boolean>(false)
   const visibility = useMemo(() => ({ keysVisible, setKeysVisible }), [keysVisible])
 
   return (

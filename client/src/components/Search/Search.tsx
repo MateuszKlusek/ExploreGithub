@@ -34,23 +34,23 @@ function Search() {
 
   const [messageField, setMessageField] = useState('')
 
-  const [dataFromDB, setDataFromDB] = useState([])
+  const [dataFromDB, setDataFromDB] = useState<any>([])
 
-  const popupcontainerRef = useRef()
-  const midcontainerRef = useRef()
-  const spinnerRef = useRef()
+  const popupcontainerRef = useRef<HTMLDivElement>(null)
+  const midcontainerRef = useRef<HTMLDivElement>(null)
+  const spinnerRef = useRef<HTMLDivElement>(null)
 
-  const switcherRef = useRef()
-  const switchBubbleRef = useRef()
-  const searchButtonRef = useRef()
-  const searchField = useRef()
-  const iconRef = useRef()
+  const switcherRef = useRef<HTMLDivElement>(null)
+  const switchBubbleRef = useRef<HTMLDivElement>(null)
+  const searchButtonRef = useRef<HTMLButtonElement>(null)
+  const searchField = useRef<HTMLInputElement>(null)
+  const iconRef = useRef<HTMLDivElement>(null)
 
   // search mode -> githubAPI or scraper
   const [mode, setMode] = useState('githubAPI')
   const { profileQuery, setProfileQuery } = useContext(SearchContext)
 
-  const [switcherXWidth, setSwitcherXWidth] = useState(undefined)
+  const [switcherXWidth, setSwitcherXWidth] = useState(0)
 
   var navigate = useNavigate()
 
@@ -66,15 +66,23 @@ function Search() {
   // side effect on loadSpinner
   useLayoutEffect(() => {
     if (loadSpinner) {
-      popupcontainerRef.current.style.opacity = 0
-      midcontainerRef.current.style.opacity = 0.3
-      midcontainerRef.current.style.pointerEvents = 'none'
-    } else {
-      popupcontainerRef.current.style.opacity = 1
-      if (!loadPopup) {
-        midcontainerRef.current.style.opacity = 1
+      if (popupcontainerRef.current) {
+        popupcontainerRef.current.style.opacity = "0"
       }
-      midcontainerRef.current.style.pointerEvents = 'auto'
+      if (midcontainerRef.current) {
+        midcontainerRef.current.style.opacity = "0.3"
+        midcontainerRef.current.style.pointerEvents = 'none'
+      }
+    } else {
+      if (popupcontainerRef.current) {
+        popupcontainerRef.current.style.opacity = "1"
+      }
+      if (midcontainerRef.current) {
+        if (!loadPopup) {
+          midcontainerRef.current.style.opacity = "1"
+        }
+        midcontainerRef.current.style.pointerEvents = 'auto'
+      }
     }
   }, [loadSpinner])
 
@@ -88,20 +96,28 @@ function Search() {
 
   useEffect(() => {
     if (loadPopup) {
-      midcontainerRef.current.style.opacity = 0.1
-      popupcontainerRef.current.style.display = 'block'
+      if (midcontainerRef.current && popupcontainerRef.current) {
+        midcontainerRef.current.style.opacity = "0.1"
+        popupcontainerRef.current.style.display = 'block'
+      }
     } else {
-      midcontainerRef.current.style.opacity = 1
+      if (midcontainerRef.current) {
+        midcontainerRef.current.style.opacity = "1"
+      }
     }
   }, [loadPopup])
 
   useEffect(() => {
     if (enableSearch) {
-      searchButtonRef.current.style.opacity = 1
-      searchButtonRef.current.style.cursor = 'pointer'
+      if (searchButtonRef.current) {
+        searchButtonRef.current.style.opacity = "1"
+        searchButtonRef.current.style.cursor = 'pointer'
+      }
     } else {
-      searchButtonRef.current.style.opacity = 0.7
-      searchButtonRef.current.style.cursor = 'auto'
+      if (searchButtonRef.current) {
+        searchButtonRef.current.style.opacity = "0.7"
+        searchButtonRef.current.style.cursor = 'auto'
+      }
     }
   }, [enableSearch])
 
@@ -118,9 +134,9 @@ function Search() {
   }, [paletteAnimationEnabled])
 
   useEffect(() => {
-    if (size.width / 20 < 80 && size.width / 20 > 48) {
-      setSwitcherXWidth((80 - size.width / 20).toFixed(2))
-    } else if (size.width / 20 < 48) {
+    if (size.width! / 20 < 80 && size.width! / 20 > 48) {
+      setSwitcherXWidth(Number((80 - size.width! / 20).toFixed(2)))
+    } else if (size.width! / 20 < 48) {
       setSwitcherXWidth(32)
     } else {
       setSwitcherXWidth(0)
@@ -128,13 +144,19 @@ function Search() {
 
     // move the switcher ball if it's on the right
     if (mode === 'scraper') {
-      if (size.width / 20 < 80 && size.width / 20 > 48) {
+      if (size.width! / 20 < 80 && size.width! / 20 > 48) {
         var t = 70 - switcherXWidth
-        switchBubbleRef.current.style.transform = `translate(${t}px)`
-      } else if (size.width / 20 < 48) {
-        switchBubbleRef.current.style.transform = `translate(38px)`
+        if (switchBubbleRef.current) {
+          switchBubbleRef.current.style.transform = `translate(${t}px)`
+        }
+      } else if (size.width! / 20 < 48) {
+        if (switchBubbleRef.current) {
+          switchBubbleRef.current.style.transform = `translate(38px)`
+        }
       } else {
-        switchBubbleRef.current.style.transform = `translate(70px)`
+        if (switchBubbleRef.current) {
+          switchBubbleRef.current.style.transform = `translate(70px)`
+        }
       }
     }
   }, [size])
@@ -170,9 +192,11 @@ function Search() {
     }
   }
 
-  const switchMode = (x, mode) => {
+  const switchMode = (x: number, mode: "scraper" | "githubAPI") => {
     // disable seperately: mouse clicking and 'm' key
-    switcherRef.current.style.pointerEvents = 'none'
+    if (switcherRef.current) {
+      switcherRef.current.style.pointerEvents = 'none'
+    }
     setSwitcherEnabled(false)
 
     var tl = gsap.timeline({
@@ -180,7 +204,9 @@ function Search() {
         setMode(mode)
         profileQuery.length > 0 ? setEnableSearch(true) : setEnableSearch(false)
         // enable seperately: mouse clicking and 'm' key
-        switcherRef.current.style.pointerEvents = 'auto'
+        if (switcherRef.current) {
+          switcherRef.current.style.pointerEvents = 'auto'
+        }
         setSwitcherEnabled(true)
       },
     })
@@ -201,7 +227,7 @@ function Search() {
     navigate('display', { state: data })
   }
 
-  const doNotUseSavedData = async (exists) => {
+  const doNotUseSavedData = async (exists: boolean) => {
     // change midcontainer styles to opacity 0.7 and so on
     console.log('do not use saved data')
     setLoadSpinner(true)
@@ -220,8 +246,10 @@ function Search() {
       // here we got from getting data from github API
       if (response.data.status === 'not found') {
         console.log("the user doesn't exist", response.data)
-        midcontainerRef.current.style.pointerEvents = 'auto'
-        searchField.current.disabled = false
+        if (midcontainerRef.current && searchField.current) {
+          midcontainerRef.current.style.pointerEvents = 'auto'
+          searchField.current.disabled = false
+        }
         setLoadSpinner(false)
         setMessageField("The user doesn't exist")
       } else {
@@ -243,7 +271,9 @@ function Search() {
       })
       if (response.data.status === 'not found') {
         console.log("the user doesn't exist", response.data)
-        searchField.current.disabled = false
+        if (searchField.current) {
+          searchField.current.disabled = false
+        }
         setLoadSpinner(false)
         setMessageField("The user doesn't exist")
       } else {
@@ -265,12 +295,12 @@ function Search() {
       )}
 
       {mode === 'githubAPI' ? (
-        <KeyboardNavigation top={'80px'} opacity={'0.3'} />
+        <KeyboardNavigation top={80} opacity={0.3} />
       ) : (
-        <KeyboardNavigation top={'20px'} opacity={'0.3'} />
+        <KeyboardNavigation top={20} opacity={0.3} />
       )}
 
-      <S.PopupContainer ref={popupcontainerRef} color={hexRgb(palette.color4)}>
+      <S.PopupContainer ref={popupcontainerRef} red={hexRgb(palette.color4).red} green={hexRgb(palette.color4).green} blue={hexRgb(palette.color4).blue}>
         <S.PopupTitle>github.com/{profileQuery}</S.PopupTitle>
         <S.PopupMessage>
           There is information about /{profileQuery} already found from previous searches. <br />
@@ -287,14 +317,14 @@ function Search() {
       </S.PopupContainer>
 
       <S.Midcontainer ref={midcontainerRef}>
-        <S.Icon color={palette.color3} onClick={() => window.location.reload(false)} ref={iconRef}>
+        <S.Icon color={palette.color3} onClick={() => window.location.reload()} ref={iconRef}>
           {keysVisible && (
             <KeyboardIcon
               buttonKey={'r'}
               horizontal={'left'}
-              vertical={size.width > 600 ? 'top' : 'bottom'}
-              right={size.width > 600 ? 20 : 10}
-              top={size.width > 600 ? 5 : 65}
+              vertical={size.width! > 600 ? 'top' : 'bottom'}
+              right={size.width! > 600 ? 20 : 10}
+              top={size.width! > 600 ? 5 : 65}
             />
           )}
         </S.Icon>
@@ -316,7 +346,7 @@ function Search() {
               buttonKey={'c / i'}
               horizontal={'left'}
               vertical={'top'}
-              left={size.width > 600 ? -100 : -50}
+              left={size.width! > 600 ? -100 : -50}
               top={-5}
             />
           )}
@@ -352,7 +382,9 @@ function Search() {
           onClick={() => {
             if (enableSearch) {
               setEnableSearch(false)
-              searchField.current.disabled = true
+              if (searchField.current) {
+                searchField.current.disabled = true
+              }
               checkDatabase()
             }
           }}

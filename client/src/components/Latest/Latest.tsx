@@ -29,7 +29,7 @@ const Latest = memo((props) => {
   const [githubAvatarsLoaded, setGithubAvatarsLoaded] = useState(false)
 
   const { profileQuery, setProfileQuery } = useContext(SearchContext)
-  const SingleUserRef = useRef([])
+  const SingleUserRef = useRef<HTMLImageElement[]>([])
 
   const { palette, setPalette, paletteAnimationEnabled, setPaletteAnimationEnabled } =
     useContext(PaletteContext)
@@ -108,11 +108,19 @@ const Latest = memo((props) => {
         responseType: 'blob',
       })
 
-      let imgUrl = URL.createObjectURL(response.data)
+      let imgUrl: any = URL.createObjectURL(response.data)
       var temp = blobURLs
       temp.push(imgUrl)
       setBlobURLs(temp)
-      SingleUserRef.current[idx].src = imgUrl
+      // unfishined promise????? figure it out 
+      try {
+        if (SingleUserRef.current) {
+          SingleUserRef.current[Number(idx)].src = imgUrl
+        }
+      }
+      catch (err) {
+        console.log(err);
+      }
     }
   }
 
@@ -120,9 +128,9 @@ const Latest = memo((props) => {
     <S.LatestContainer>
       <S.LatestTitle> Latest profiles </S.LatestTitle>
       <S.SingleUsersContainer>
-        <SingleUser data={latestThree[0]} />
-        <SingleUser data={latestThree[1]} />
-        <SingleUser data={latestThree[2]} />
+        <SingleUser data={latestThree[0] ?? null} />
+        <SingleUser data={latestThree[1] ?? null} />
+        <SingleUser data={latestThree[2] ?? null} />
       </S.SingleUsersContainer>
     </S.LatestContainer>
   )

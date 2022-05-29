@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useRef, memo } from 'react'
+import { FC, useEffect, useContext, memo } from 'react'
 import { KeyboardNavigationContext } from '../../context/KeyboardNavigationContext'
 import { PaletteContext } from '../../context/PaletteContext'
 import { SearchContext } from '../../context/SearchContext'
@@ -7,7 +7,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 
 import * as S from './KeyboardNavigation.styled'
 
-const KeyboardNavigation = (props) => {
+const KeyboardNavigation: FC<KeyboardNavigationProps> = (props) => {
   const { Refs, visibility } = useContext(KeyboardNavigationContext)
   const { keysVisible, setKeysVisible } = visibility
 
@@ -18,7 +18,7 @@ const KeyboardNavigation = (props) => {
   const { setProfileQuery } = useContext(SearchContext)
 
   useEffect(() => {
-    const keyListener = (e) => {
+    const keyListener = (e: KeyboardEvent) => {
       // console.log(`Key: ${e.key} with keycode ${e.keyCode}`)
 
       switch (pathname) {
@@ -26,7 +26,7 @@ const KeyboardNavigation = (props) => {
           if (e.key === 'Enter') {
             Refs.searchButtonRef.current.click()
           } else if (e.key === 'r' && Refs.searchField.current !== document.activeElement) {
-            window.location.reload(false)
+            window.location.reload()
           } else if (e.key === 'm' && Refs.searchField.current !== document.activeElement) {
             Refs.switcherRef.current.click()
           } else if (e.key === 'p' && Refs.searchField.current !== document.activeElement) {
@@ -59,7 +59,7 @@ const KeyboardNavigation = (props) => {
         case '/display':
           switch (e.key) {
             case 'r':
-              window.location.reload(false)
+              window.location.reload()
               break
             case 'p':
               Refs.SwitcherContainerRef.current.click()
@@ -118,7 +118,7 @@ const KeyboardNavigation = (props) => {
 
   return (
     <S.KeyboardNavigationContainer
-      onClick={() => setKeysVisible((prev) => !prev)}
+      onClick={() => setKeysVisible((prev: boolean) => !prev)}
       top={props.top}
       opacity={keysVisible ? 0.8 : 0.3}
     />

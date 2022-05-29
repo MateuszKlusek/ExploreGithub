@@ -9,14 +9,20 @@ export const SearchContainer = styled.div`
   overflow-x: hidden;
   overflow-y: hidden;
 `
-export const PopupContainer = styled.div`
+interface IPopupContainer {
+  red: number
+  green: number
+  blue: number
+}
+
+export const PopupContainer = styled.div<IPopupContainer>`
   display: grid;
   max-width: 400px;
   width: 90%;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 5fr 1fr;
   height: clamp(170px, 30vw, 200px);
-  background: ${(props) => `rgba(${props.color.red},${props.color.green},${props.color.blue},0.8)`};
+  background: ${(props) => `rgba(${props.red},${props.green},${props.blue},0.8)`};
   position: absolute;
   left: 0;
   right: 0;
@@ -240,7 +246,13 @@ const SpinnerSpin = keyframes`
       transform: rotate(1800deg);
     }
 `
-export const Spinner = styled.div`
+
+interface ISpinner {
+  color1: number
+  color2: number
+}
+
+export const Spinner = styled.div<ISpinner>`
   z-index: 4000;
   display: inline-block;
   position: absolute;

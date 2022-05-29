@@ -18,7 +18,12 @@ export const TopContainer = styled.div`
 
 export const BottomContainer = styled.div``
 
-export const GithubAvatar = styled.img`
+
+interface IGithubAvatar {
+  url: string
+}
+
+export const GithubAvatar = styled.img<IGithubAvatar>`
   margin-top: 50px;
   width: 150px;
   height: 150px;

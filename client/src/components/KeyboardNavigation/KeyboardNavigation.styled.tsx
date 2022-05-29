@@ -1,6 +1,12 @@
 import styled from "styled-components";
 
-export const KeyboardNavigationContainer = styled.div`
+interface IKeyboardNavigationContainer {
+  top: number
+  opacity: number
+
+}
+
+export const KeyboardNavigationContainer = styled.div<IKeyboardNavigationContainer>`
   /* border: 1px solid black; */
   position: absolute;
   left: 20px;

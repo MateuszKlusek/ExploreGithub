@@ -42,3 +42,12 @@ interface KeyboardIconProps {
   top?: number
   bottom?: number
 }
+
+interface GoBackProps {
+  color: string
+}
+
+interface KeyboardNavigationProps {
+  top: number
+  opacity: number
+}

@@ -11,14 +11,17 @@ import { KeyboardNavigationContext } from '../../context/KeyboardNavigationConte
 // styles
 import * as S from './GoBack.styled'
 
-const GoBack = (props) => {
+
+
+
+const GoBack: React.FC<GoBackProps> = ({ color }) => {
   const { Refs, visibility } = useContext(KeyboardNavigationContext)
   const { keysVisible, setKeysVisible } = visibility
 
   const navigate = useNavigate()
 
-  const arrowRef = useRef()
-  const SVGRef = useRef()
+  const arrowRef = useRef<HTMLDivElement>(null)
+  const SVGRef = useRef(null)
 
   const animateGoingBack = async () => {
     var tl = gsap.timeline({
@@ -50,7 +53,7 @@ const GoBack = (props) => {
       <S.SVG viewBox="0 0 70 50" fill="none">
         <S.Line
           points="42,2 24,20 42,38"
-          stroke={props.color}
+          stroke={color}
           strokeWidth="5"
           ref={SVGRef}
           onClick={() => {

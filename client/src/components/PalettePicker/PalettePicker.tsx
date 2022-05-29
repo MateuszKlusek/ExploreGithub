@@ -149,8 +149,9 @@ const PalettePicker = () => {
     const e = counter
     restOfPalett.push(
       <S.PaletteContainer
-        top={`${top}px`}
-        ref={(el) => (PaletteRestRef.current[e] = el)}
+        top={top}
+        ref={(el) => (PaletteRestRef.current[e] = el as HTMLInputElement)}
+        display={'grid'}
         onClick={() => {
           // when clicked, this palettet becomes the first one and there's empty row
           // because we don't repeat the main palette and those to choose from
@@ -158,7 +159,7 @@ const PalettePicker = () => {
           var previous_palette = palette
           setPalette(value)
         }}
-        opacity={'0'}
+        opacity={0}
         key={el}
       >
         {rolledOut && keysVisible ? (
@@ -206,7 +207,7 @@ const PalettePicker = () => {
       }}
       ref={SwitcherContainerRef}
     >
-      <S.PaletteContainer top={'0'} opacity={'1'} display={'grid'} ref={MainPaletteRef}>
+      <S.PaletteContainer top={0} opacity={1} display={'grid'} ref={MainPaletteRef}>
         <S.SingleColor ref={ThirdColorRef} color={palette.color3} />
         <S.SingleColor ref={FourthColorRef} color={palette.color4} />
         <S.SingleColor ref={SecondColorRef} color={palette.color2} />
