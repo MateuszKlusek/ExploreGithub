@@ -46,3 +46,4 @@ export const paletteColors = {
     color4: "#b7b789",
   },
 };
+

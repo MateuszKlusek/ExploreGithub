@@ -23,10 +23,6 @@ import { SearchContext } from "./context/SearchContext.js"
 
 
 function App() {
-
-  const { state } = useLocation()
-  const [profileQuery, setProfileQuery] = useState("")
-
   // palette context values
   // is localStorage is empty set defaults, it already have sth in it, set it
   // added non-null assertion operator for typescript, without we have an arror, even though with ternary operator we exclude the possibility of there being an error
@@ -38,16 +34,21 @@ function App() {
     color5: "#B1A296"
   }
 
-  const [palette, setPalette] = useState<SinglePaletteColor>(initialPaletteState)
-  const [paletteAnimationEnabled, setPaletteAnimationEnabled] = useState(true)
-  const [rolledOut, setRolledOut] = useState(false)
-
-
+  // states
+  const [profileQuery, setProfileQuery] = useState<string>("")
   const [blobURLs, setBlobURLs] = useState([])
-
-  const Refs = {}
   const [keysVisible, setKeysVisible] = useState<boolean>(false)
+  const [palette, setPalette] = useState<SinglePaletteColor>(initialPaletteState)
+  const [paletteAnimationEnabled, setPaletteAnimationEnabled] = useState<boolean>(true)
+  const [rolledOut, setRolledOut] = useState<boolean>(false)
+
   const visibility = useMemo(() => ({ keysVisible, setKeysVisible }), [keysVisible])
+
+  // refs object to past forward 
+  const Refs = {}
+
+  // react router 
+  const { state } = useLocation()
 
   return (
     <SearchContext.Provider value={{ profileQuery, setProfileQuery }}>

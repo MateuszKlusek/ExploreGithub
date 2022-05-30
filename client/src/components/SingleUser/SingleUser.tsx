@@ -1,19 +1,27 @@
+// react
 import { useContext, useRef, useLayoutEffect } from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+// styles
 import * as S from './SingleUser.styled'
+
+// assets
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserFriends, faFolder } from '@fortawesome/free-solid-svg-icons'
+import spinner from './spinnerAvatar.gif'
+
+// packages
 import gsap from 'gsap'
 import axios from 'axios'
-import { KeyboardNavigationContext } from '../../context/KeyboardNavigationContext.js'
-import { useNavigate } from 'react-router-dom'
-import hexRgb from 'hex-rgb'
-import { PaletteContext } from '../../context/PaletteContext.js'
 import ContentLoader from 'react-content-loader'
+import hexRgb from 'hex-rgb'
+import { useNavigate } from 'react-router-dom'
 
+// context
+import { KeyboardNavigationContext } from '../../context/KeyboardNavigationContext.js'
+import { PaletteContext } from '../../context/PaletteContext.js'
+
+// hooks
 import { useWindowSize } from '../../hooks/useWindowSize'
-
-import spinner from './spinnerAvatar.gif'
-import { createGlobalStyle } from 'styled-components'
 
 const SmallNumberLoader = () => (
   <ContentLoader
@@ -41,12 +49,15 @@ const GithubNameLoader: React.FC<GithubNameLoaderProps> = ({ size }) => (
 )
 
 const SingleUser: React.FC<ISingleUserData> = ({ data }) => {
-  const { Refs, visibility } = useContext(KeyboardNavigationContext)
-  const { keysVisible, setKeysVisible } = visibility
+  // states
+  const { palette } = useContext(PaletteContext)
+  const { visibility } = useContext(KeyboardNavigationContext)
+  const { setKeysVisible } = visibility
 
-  const { palette, setPalette } = useContext(PaletteContext)
   const size = useWindowSize()
+  var navigate = useNavigate()
 
+  // refs 
   const GithubIconRef = useRef<HTMLImageElement>(null)
 
   useLayoutEffect(() => {
@@ -59,8 +70,8 @@ const SingleUser: React.FC<ISingleUserData> = ({ data }) => {
     }
   }, [data])
 
-  var navigate = useNavigate()
 
+  // 
   const getGithubAvatar = async () => {
     const response = await axios({
       method: 'get',
@@ -72,7 +83,9 @@ const SingleUser: React.FC<ISingleUserData> = ({ data }) => {
       if (GithubIconRef && GithubIconRef.current) {
         GithubIconRef.current.src = imgUrl
       }
-    } catch (err) { }
+    } catch (err) {
+      console.log(err)
+    }
   }
 
 

@@ -1,8 +1,10 @@
 import ReactDOM from "react-dom/client";
-import App from "./App";
 
+// packages
 import { BrowserRouter } from "react-router-dom"
 
+// components
+import App from "./App";
 
 
 const rootElement = document.getElementById("root");

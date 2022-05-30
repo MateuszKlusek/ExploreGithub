@@ -11,18 +11,18 @@ import { KeyboardNavigationContext } from '../../context/KeyboardNavigationConte
 // styles
 import * as S from './GoBack.styled'
 
-
-
-
 const GoBack: React.FC<GoBackProps> = ({ color }) => {
-  const { Refs, visibility } = useContext(KeyboardNavigationContext)
-  const { keysVisible, setKeysVisible } = visibility
+  // states
+  const { visibility } = useContext(KeyboardNavigationContext)
+  const { setKeysVisible } = visibility
 
-  const navigate = useNavigate()
-
+  // refs
   const arrowRef = useRef<HTMLDivElement>(null)
   const SVGRef = useRef(null)
 
+  const navigate = useNavigate()
+
+  // handle jiggle animation for going back to the Search component
   const animateGoingBack = async () => {
     var tl = gsap.timeline({
       onComplete: () => {
