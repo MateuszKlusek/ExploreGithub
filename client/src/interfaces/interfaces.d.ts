@@ -51,3 +51,8 @@ interface KeyboardNavigationProps {
   top: number
   opacity: number
 }
+
+interface Ishape_straight {
+  right?: string
+  left?: string
+}

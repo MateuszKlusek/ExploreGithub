@@ -1,5 +1,7 @@
-/* eslint-disable react-hooks/exhaustive-deps */
+// react
 import { useEffect } from 'react'
+
+// packages
 import { useNavigate } from 'react-router-dom'
 
 

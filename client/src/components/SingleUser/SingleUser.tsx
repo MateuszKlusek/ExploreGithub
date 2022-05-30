@@ -1,5 +1,5 @@
 // react
-import { useContext, useRef, useLayoutEffect } from 'react'
+import { useContext, useRef, useEffect } from 'react'
 
 // styles
 import * as S from './SingleUser.styled'
@@ -49,6 +49,7 @@ const GithubNameLoader: React.FC<GithubNameLoaderProps> = ({ size }) => (
 )
 
 const SingleUser: React.FC<ISingleUserData> = ({ data }) => {
+
   // states
   const { palette } = useContext(PaletteContext)
   const { visibility } = useContext(KeyboardNavigationContext)
@@ -60,7 +61,7 @@ const SingleUser: React.FC<ISingleUserData> = ({ data }) => {
   // refs 
   const GithubIconRef = useRef<HTMLImageElement>(null)
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (Object.keys(data).length === 0) {
       if (GithubIconRef && GithubIconRef.current) {
         GithubIconRef.current.src = spinner
@@ -71,7 +72,7 @@ const SingleUser: React.FC<ISingleUserData> = ({ data }) => {
   }, [data])
 
 
-  // 
+  // handles getting the avatar url from the github and swaping icon spinner src with imgUrl
   const getGithubAvatar = async () => {
     const response = await axios({
       method: 'get',

@@ -1,17 +1,26 @@
-import React, { useState, useEffect, useContext, useRef } from 'react'
+// react
+import { useState, useEffect, useContext, useRef } from 'react'
 
+// styles
 import * as S from './PalettePicker.styled'
+
+// contexts
 import { PaletteContext } from '../../context/PaletteContext.js'
 import { KeyboardNavigationContext } from '../../context/KeyboardNavigationContext.js'
 
-import { paletteColors } from '../../utils/paletteColors.js'
+// pakcates
 import gsap from 'gsap'
+
+// components
 import KeyboardIcon from '../KeyboardIcon/KeyboardIcon'
+
+// helpers
 import { useWindowSize } from '../../hooks/useWindowSize'
+import { paletteColors } from '../../utils/paletteColors.js'
 
 const PalettePicker = () => {
+  // states
   const [isSwitcherDisabled, setIsSwitcherDisabled] = useState(false)
-
   const {
     palette,
     setPalette,
@@ -21,7 +30,10 @@ const PalettePicker = () => {
     setRolledOut,
   } = useContext(PaletteContext)
   const { Refs, visibility } = useContext(KeyboardNavigationContext)
-  const { keysVisible, setKeysVisible } = visibility
+  const { keysVisible } = visibility
+
+  // refs
+  const InitialRenderRef = useRef<boolean>(true)
 
   const FirstColorRef = useRef<HTMLDivElement>(null)
   const SecondColorRef = useRef<HTMLDivElement>(null)
@@ -38,7 +50,7 @@ const PalettePicker = () => {
     localStorage.setItem('palette', JSON.stringify(palette))
   }, [palette])
 
-  const InitialRenderRef = useRef<boolean>(true)
+  // on initial render set the style for invisible palettes pointer-events "none", so we can't click
   useEffect(() => {
     if (InitialRenderRef.current) {
       for (var el in PaletteRestRef.current) {
@@ -48,6 +60,7 @@ const PalettePicker = () => {
     }
   }, [])
 
+  // handles the roll out animation for the multiple color paletts
   const rollOut = () => {
     var tl = gsap.timeline({
       onComplete: () => {
@@ -96,6 +109,7 @@ const PalettePicker = () => {
       )
   }
 
+  // handles the roll in animation for the multiple color paletts
   const rollIn = () => {
     var tl = gsap.timeline({
       onComplete: () => {
@@ -147,15 +161,13 @@ const PalettePicker = () => {
 
   // populating array with the rest of the palette that doesn't mach current palette
   var restOfColors = []
-  for (const [key, value] of Object.entries(paletteColors)) {
+  for (const [_, value] of Object.entries(paletteColors)) {
     if (JSON.stringify(value) !== JSON.stringify(palette)) {
       restOfColors.push({ value })
     }
   }
-
   let restOfPalett = []
   let counter = 0
-
   for (var el in restOfColors) {
     const value = restOfColors[el].value
     var top = 20 + counter * 20
@@ -168,8 +180,6 @@ const PalettePicker = () => {
         onClick={() => {
           // when clicked, this palettet becomes the first one and there's empty row
           // because we don't repeat the main palette and those to choose from
-          var temp = e
-          var previous_palette = palette
           setPalette(value)
         }}
         opacity={0}

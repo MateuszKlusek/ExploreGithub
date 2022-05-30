@@ -1,4 +1,6 @@
 import styled from 'styled-components'
+
+// helpers
 import { device } from '../../utils/device.js'
 
 export const DisplayDataContainer = styled.div`

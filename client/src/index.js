@@ -1,6 +1,6 @@
 import ReactDOM from "react-dom/client";
 
-// packages
+// hooks
 import { BrowserRouter } from "react-router-dom"
 
 // components

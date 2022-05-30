@@ -1,9 +1,13 @@
+// react
 import { useLayoutEffect, useRef } from 'react'
 
+// styles
 import * as S from './GithubLink.styled'
 
 const GithubLink = () => {
+  // refs
   const svgRef = useRef<SVGSVGElement>(null)
+
   useLayoutEffect(() => {
     if (svgRef.current) {
       svgRef.current.style.transform = 'rotate(315deg)'

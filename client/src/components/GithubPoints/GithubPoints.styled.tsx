@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const RequestPointsText = styled.div``;
+
 export const RequestPointsContainer = styled.div`
   z-index: 4000;
   font-size: clamp(0.8rem, 1.5vw, 1rem);

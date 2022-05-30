@@ -1,4 +1,6 @@
 import styled from 'styled-components'
+
+// helpers
 import { device } from '../../utils/device'
 
 export const LatestContainer = styled.div`

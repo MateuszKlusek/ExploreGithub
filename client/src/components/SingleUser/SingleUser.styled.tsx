@@ -1,6 +1,7 @@
 import styled from 'styled-components'
-import { device } from '../../utils/device'
 
+// helpers
+import { device } from '../../utils/device'
 
 
 interface ISingleUser {
@@ -8,8 +9,6 @@ interface ISingleUser {
   green: number
   blue: number
 }
-
-
 
 export const SingleUser = styled.div<ISingleUser>`
   cursor: pointer;

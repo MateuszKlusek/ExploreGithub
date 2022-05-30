@@ -1,16 +1,17 @@
+// react
 import { useEffect, useRef, memo } from "react";
 
+// packages
 import gsap from "gsap";
 
+// styoles
 import * as S from "./KeyboardIcon.styled";
 
-interface Ishape_straight {
-  right?: string
-  left?: string
-}
 
 const KeyboardIcon: React.FC<KeyboardIconProps> = ({ buttonKey, vertical, horizontal, shape, size, left, right, top, bottom }) => {
+  // refs
   const svgKeyRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     const animate = async () => {
       var tl = gsap.timeline();
@@ -47,8 +48,6 @@ const KeyboardIcon: React.FC<KeyboardIconProps> = ({ buttonKey, vertical, horizo
       points = `60,30 55,30`;
     }
   }
-
-
 
   var shape_straight: Ishape_straight = {};
   if (horizontal === "left") {
