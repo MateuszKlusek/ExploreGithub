@@ -38,11 +38,24 @@ const PalettePicker = () => {
     localStorage.setItem('palette', JSON.stringify(palette))
   }, [palette])
 
+  const InitialRenderRef = useRef<boolean>(true)
+  useEffect(() => {
+    if (InitialRenderRef.current) {
+      for (var el in PaletteRestRef.current) {
+        PaletteRestRef.current[el].style.pointerEvents = "none"
+      }
+      InitialRenderRef.current = false
+    }
+  }, [])
+
   const rollOut = () => {
     var tl = gsap.timeline({
       onComplete: () => {
         if (SwitcherContainerRef.current) {
           SwitcherContainerRef.current.style.pointerEvents = 'auto';
+        }
+        for (var el in PaletteRestRef.current) {
+          PaletteRestRef.current[el].style.pointerEvents = "auto"
         }
         setIsSwitcherDisabled(false)
         setRolledOut(true)
@@ -193,6 +206,9 @@ const PalettePicker = () => {
             setPaletteAnimationEnabled(false)
             if (SwitcherContainerRef.current) {
               SwitcherContainerRef.current.style.pointerEvents = 'none'
+            }
+            for (var el in PaletteRestRef.current) {
+              PaletteRestRef.current[el].style.pointerEvents = "none"
             }
             rollIn()
           } else {
