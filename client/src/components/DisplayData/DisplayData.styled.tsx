@@ -6,6 +6,8 @@ import { device } from '../../utils/device.js'
 export const DisplayDataContainer = styled.div`
   width: 100%;
   height: 100vh;
+  display: grid;
+  grid-template-rows: 500px 1fr;
 `
 
 export const TopContainer = styled.div`
@@ -18,7 +20,20 @@ export const TopContainer = styled.div`
   padding-bottom: 20px;
 `
 
-export const BottomContainer = styled.div``
+export const BottomContainer = styled.div`
+  height: 100% ;
+`
+
+export const ChartsContainer = styled.div`
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 100px;
+
+  & div{
+    margin: 1px solid green;
+  }
+`
 
 
 interface IGithubAvatar {

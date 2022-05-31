@@ -56,3 +56,7 @@ interface Ishape_straight {
   right?: string
   left?: string
 }
+
+interface ChartProps {
+  type: string
+}

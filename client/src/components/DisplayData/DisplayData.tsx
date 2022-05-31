@@ -13,6 +13,7 @@ import PalettePicker from './../PalettePicker/PalettePicker'
 import GoBack from '../GoBack/GoBack'
 import KeyboardIcon from '../KeyboardIcon/KeyboardIcon'
 import KeyboardNavigation from '../KeyboardNavigation/KeyboardNavigation'
+import Chart from '../Chart/Chart'
 
 // contexts
 import { PaletteContext } from './../../context/PaletteContext.js'
@@ -96,7 +97,16 @@ const DisplayData: React.FC<ISingleUserData> = (props) => {
         </S.GithubDataContainer>
       </S.TopContainer >
 
-      <S.BottomContainer></S.BottomContainer>
+
+
+
+      <S.BottomContainer>
+        <S.ChartsContainer>
+          <Chart type={"pie"} />
+          <Chart type={"pie"} />
+          <Chart type={"pie"} />
+        </S.ChartsContainer>
+      </S.BottomContainer>
     </S.DisplayDataContainer >
   )
 }

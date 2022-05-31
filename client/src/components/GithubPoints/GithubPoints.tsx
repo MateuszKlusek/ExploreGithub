@@ -52,7 +52,7 @@ function GithubPoints() {
     <S.RequestPointsContainer data-tip data-for="githubTip">
       <ReactTooltip id="githubTip" place="top" effect="solid">
         Default limit for each user <br />
-        Single look-up cost usually 2-4 API points.
+        Single look-up costs usually 2-4 API points.
         <br />
         API points refresh every hour
       </ReactTooltip>

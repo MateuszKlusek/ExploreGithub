@@ -108,7 +108,7 @@ export const Icon = styled.div`
     font-family: 'Font Awesome 5 Brands';
     font-weight: 400;
     content: '\f09b';
-    font-size: clamp(2.5rem, 4.5vw, 3.5rem);
+    font-size: clamp(4.5rem, 5vw, 5.5rem);
     color: ${(props) => props.color};
   }
 
