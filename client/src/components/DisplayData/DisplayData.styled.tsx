@@ -21,18 +21,20 @@ export const TopContainer = styled.div`
 `
 
 export const BottomContainer = styled.div`
-  height: 100% ;
+width: 100%;
 `
 
 export const ChartsContainer = styled.div`
-  width: 100%;
+margin-top: -20px;
+  width: auto;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  column-gap: 100px;
+  grid-template-columns: repeat(auto-fit, minmax(330px, max-content));
+  gap: 20px;
+  place-items: center;
+ 
+  justify-content: center;    
+ padding: 0 auto;
 
-  & div{
-    margin: 1px solid green;
-  }
 `
 
 
