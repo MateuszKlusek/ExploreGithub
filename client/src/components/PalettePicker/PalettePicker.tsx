@@ -4,6 +4,9 @@ import { useState, useEffect, useContext, useRef } from 'react'
 // styles
 import * as S from './PalettePicker.styled'
 
+// hooks
+import { useLocation } from "react-router-dom"
+
 // contexts
 import { PaletteContext } from '../../context/PaletteContext.js'
 import { KeyboardNavigationContext } from '../../context/KeyboardNavigationContext.js'
@@ -194,7 +197,7 @@ const PalettePicker = () => {
             vertical={"top"}
             right={0}
             top={5}
-            theme={"light"}
+            theme={'light'}
           />
         ) : (
           ''

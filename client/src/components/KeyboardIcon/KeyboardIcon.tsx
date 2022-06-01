@@ -1,14 +1,20 @@
 // react
-import { useEffect, useRef, memo } from "react";
+import { useState, useEffect, useRef, memo } from "react";
 
 // packages
 import gsap from "gsap";
+
+// hooks
+import { useLocation } from "react-router-dom";
 
 // styoles
 import * as S from "./KeyboardIcon.styled";
 
 
 const KeyboardIcon: React.FC<KeyboardIconProps> = ({ buttonKey, vertical, horizontal, shape, size, left, right, top, bottom, theme }) => {
+
+  // states
+  const [pathname, usePathname] = useState(useLocation().pathname)
   // refs
   const svgKeyRef = useRef<HTMLDivElement>(null);
 
@@ -85,7 +91,7 @@ const KeyboardIcon: React.FC<KeyboardIconProps> = ({ buttonKey, vertical, horizo
         left={shape === "straight" ? shape_straight.left : shape_curved.left}
         top={shape === "straight" ? "20px" : "-2px"}
         ref={svgKeyRef}
-        fontColor={theme === "light" ? "black" : "white"}
+        fontColor={pathname === "/display" ? "white" : "black"}
       >
         {buttonKey}
       </S.Key>
