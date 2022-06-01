@@ -41,6 +41,7 @@ interface KeyboardIconProps {
   left?: number
   top?: number
   bottom?: number
+  theme: string
 }
 
 interface GoBackProps {
@@ -50,6 +51,7 @@ interface GoBackProps {
 interface KeyboardNavigationProps {
   top: number
   opacity: number
+  color: string
 }
 
 interface Ishape_straight {
@@ -59,4 +61,5 @@ interface Ishape_straight {
 
 interface ChartProps {
   type: string
+  title: string
 }

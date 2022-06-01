@@ -5,7 +5,7 @@ import { device } from '../../utils/device.js'
 
 export const DisplayDataContainer = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 100%;
   display: grid;
   grid-template-rows: 500px 1fr;
 `
@@ -18,10 +18,12 @@ export const TopContainer = styled.div`
   flex-direction: column;
   border-bottom: 1px solid black;
   padding-bottom: 20px;
+  background: rgb(26, 30, 34);
 `
 
 export const BottomContainer = styled.div`
-width: 100%;
+  width: 100%;
+  margin-bottom:50px;
 `
 
 export const ChartsContainer = styled.div`
@@ -33,7 +35,7 @@ margin-top: -20px;
   place-items: center;
  
   justify-content: center;    
- padding: 0 auto;
+  padding: 0 auto;
 
 `
 
@@ -48,6 +50,7 @@ export const GithubAvatar = styled.img<IGithubAvatar>`
   height: 150px;
   border-radius: 50%;
   border: 0.5rem solid #0070f3;
+  cursor: pointer;
 
   @media ${device.tablet} {
     width: 100px;
@@ -60,10 +63,11 @@ export const GithubURLContainer = styled.div`
   margin-top: 20px;
   display: flex;
   position: relative;
+  cursor: pointer;
 `
 
 export const GithubURL = styled.div`
-  color: #0070f3;
+   color: #e3dede;
   font-size: 22px;
   letter-spacing: 1.2px;
 
@@ -72,34 +76,11 @@ export const GithubURL = styled.div`
   }
 `
 
-export const GithubURLArrow = styled.div`
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  color: #0070f3;
-  opacity: 0;
-
-  &:before {
-    font-family: 'Font Awesome 5 Free';
-    font-weight: 900;
-    font-size: 26px;
-    content: '\f061';
-  }
-
-  @media ${device.tablet} {
-    &:before {
-      font-family: 'Font Awesome 5 Free';
-      font-weight: 900;
-      font-size: 22px;
-      content: '\f061';
-    }
-  }
-`
-
 export const GithubJoinDate = styled.div`
   margin-top: 20px;
   font-size: 12px;
   display: flex;
+  color: #e3dede;
 
   @media ${device.tablet} {
     font-size: 11px;
@@ -147,7 +128,7 @@ export const GithubData = styled.div`
   align-items: center;
   background: ${(props) => props.color};
   border-radius: 8px;
-  box-shadow: 1px 2px 2px #00000073;
+  box-shadow: 2px 2px 10px -5px #cdcdd3;
 `
 
 export const GithubDataNumber = styled.div`

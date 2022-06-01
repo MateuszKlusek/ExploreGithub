@@ -63,12 +63,14 @@ const DisplayData: React.FC<ISingleUserData> = (props) => {
     <S.DisplayDataContainer>
       <PalettePicker />
       {keysVisible && (
-        <KeyboardIcon buttonKey={'p'} horizontal={'left'} vertical={'top'} right={40} top={30} />
+        <KeyboardIcon buttonKey={'p'} horizontal={'left'} vertical={'top'} right={40} top={30} theme={"dark"} />
       )}
       <GoBack color={palette.color3} />
-      <KeyboardNavigation top={80} opacity={0.3} />
+      <KeyboardNavigation top={80} opacity={1} color={"white"} />
+
       <S.TopContainer>
-        <S.GithubAvatar url={state.url} ref={avatarRef} />
+        <S.GithubAvatar url={state.url} ref={avatarRef}
+          onClick={() => (window.location.href = `http://github.com/${state.profileURL}`)} />
         <S.GithubURLContainer>
           <S.GithubURL
             ref={githubURLRef}
@@ -97,14 +99,11 @@ const DisplayData: React.FC<ISingleUserData> = (props) => {
         </S.GithubDataContainer>
       </S.TopContainer >
 
-
-
-
       <S.BottomContainer>
         <S.ChartsContainer>
-          <Chart type={"pie"} />
-          <Chart type={"pie"} />
-          <Chart type={"pie"} />
+          <Chart type={"pie"} title={"Top Languages"} />
+          <Chart type={"pie"} title={"Most Starred"} />
+          <Chart type={"pie"} title={"Stars per Language"} />
         </S.ChartsContainer>
       </S.BottomContainer>
     </S.DisplayDataContainer >

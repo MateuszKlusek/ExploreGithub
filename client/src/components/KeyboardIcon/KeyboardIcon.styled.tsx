@@ -47,6 +47,7 @@ interface KeyProps {
   top: string
   left: string
   right: string
+  fontColor: string
 }
 
 export const Key = styled.div<KeyProps>`
@@ -55,6 +56,6 @@ export const Key = styled.div<KeyProps>`
   right: ${(props) => props.right};
   left: ${(props) => props.left};
   opacity: 0;
-  color: black;
+  color: ${props => props.fontColor};
   font-weight: 600;
 `;

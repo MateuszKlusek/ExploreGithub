@@ -291,13 +291,13 @@ function Search() {
       {mode === 'githubAPI' && <GithubPoints />}
       <PalettePicker />
       {keysVisible && (
-        <KeyboardIcon buttonKey={'p'} horizontal={'left'} vertical={'top'} right={40} top={30} />
+        <KeyboardIcon buttonKey={'p'} horizontal={'left'} vertical={'top'} right={40} top={30} theme={"light"} />
       )}
 
       {mode === 'githubAPI' ? (
-        <KeyboardNavigation top={80} opacity={0.3} />
+        <KeyboardNavigation top={80} opacity={0.3} color={"gray"} />
       ) : (
-        <KeyboardNavigation top={20} opacity={0.3} />
+        <KeyboardNavigation top={20} opacity={0.3} color={"gray"} />
       )}
 
       <S.PopupContainer ref={popupcontainerRef} red={hexRgb(palette.color4).red} green={hexRgb(palette.color4).green} blue={hexRgb(palette.color4).blue}>
@@ -325,6 +325,7 @@ function Search() {
               vertical={size.width! > 600 ? 'top' : 'bottom'}
               right={size.width! > 600 ? 20 : 10}
               top={size.width! > 600 ? 5 : 65}
+              theme={"light"}
             />
           )}
         </S.Icon>
@@ -348,6 +349,7 @@ function Search() {
               vertical={'top'}
               left={size.width! > 600 ? -100 : -50}
               top={-5}
+              theme={"light"}
             />
           )}
         </S.SearchFieldContainer>
@@ -373,6 +375,7 @@ function Search() {
               horizontal={'left'}
               top={-5}
               right={30}
+              theme={"light"}
             />
           )}
         </S.Switcher>
@@ -401,6 +404,7 @@ function Search() {
               horizontal={'right'}
               top={-5}
               left={60}
+              theme={"light"}
             />
           )}
         </S.SearchButton>

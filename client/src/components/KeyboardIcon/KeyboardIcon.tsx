@@ -8,7 +8,7 @@ import gsap from "gsap";
 import * as S from "./KeyboardIcon.styled";
 
 
-const KeyboardIcon: React.FC<KeyboardIconProps> = ({ buttonKey, vertical, horizontal, shape, size, left, right, top, bottom }) => {
+const KeyboardIcon: React.FC<KeyboardIconProps> = ({ buttonKey, vertical, horizontal, shape, size, left, right, top, bottom, theme }) => {
   // refs
   const svgKeyRef = useRef<HTMLDivElement>(null);
 
@@ -85,6 +85,7 @@ const KeyboardIcon: React.FC<KeyboardIconProps> = ({ buttonKey, vertical, horizo
         left={shape === "straight" ? shape_straight.left : shape_curved.left}
         top={shape === "straight" ? "20px" : "-2px"}
         ref={svgKeyRef}
+        fontColor={theme === "light" ? "black" : "white"}
       >
         {buttonKey}
       </S.Key>

@@ -194,6 +194,7 @@ const PalettePicker = () => {
             vertical={"top"}
             right={0}
             top={5}
+            theme={"light"}
           />
         ) : (
           ''
@@ -247,6 +248,7 @@ const PalettePicker = () => {
             vertical={"top"}
             right={0}
             top={25}
+            theme={"light"}
           />
         ) : (
           ''

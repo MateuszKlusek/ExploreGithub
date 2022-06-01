@@ -3,19 +3,17 @@ import styled from "styled-components";
 interface IKeyboardNavigationContainer {
   top: number
   opacity: number
-
+  color: string
 }
 
 export const KeyboardNavigationContainer = styled.div<IKeyboardNavigationContainer>`
-  /* border: 1px solid black; */
   position: absolute;
   left: 20px;
   top: ${(props) => `${props.top}px`};
   cursor: pointer;
-  /* box-shadow: 0px 0px 24px 8px rgba(173,173,146,0.6);
-    background: rgba(173,173,146,0.5); */
   opacity: ${(props) => props.opacity};
   &:before {
+    color: ${props => props.color};
     font-family: "Font Awesome 5 Free";
     font-weight: 900;
     content: "\f11c";

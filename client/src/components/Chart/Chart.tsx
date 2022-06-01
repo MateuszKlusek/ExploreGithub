@@ -10,7 +10,7 @@ import { Pie } from 'react-chartjs-2';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const ChartsMostStarred: FC<ChartProps> = (props) => {
+const ChartsMostStarred: FC<ChartProps> = ({ type, title }) => {
     // states
     const [chartData, setChartData] = useState<any>()
 
@@ -19,7 +19,7 @@ const ChartsMostStarred: FC<ChartProps> = (props) => {
             labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
             datasets: [
                 {
-                    label: '# of Votes',
+                    // label: '# of Votes',
                     data: [12, 19, 3, 5, 2, 30],
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
@@ -43,6 +43,7 @@ const ChartsMostStarred: FC<ChartProps> = (props) => {
         })
     }, [])
     return <S.ChartContainer>
+        <S.ChartTitle>{title}</S.ChartTitle>
         {chartData &&
             <Pie data={chartData} />
         }

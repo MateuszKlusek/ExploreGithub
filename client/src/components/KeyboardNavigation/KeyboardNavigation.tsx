@@ -1,13 +1,18 @@
+// react
 import { FC, useEffect, useContext, memo } from 'react'
+
+// context
 import { KeyboardNavigationContext } from '../../context/KeyboardNavigationContext'
 import { PaletteContext } from '../../context/PaletteContext'
 import { SearchContext } from '../../context/SearchContext'
 
+// hooks
 import { useLocation, useNavigate } from 'react-router-dom'
 
+// styles
 import * as S from './KeyboardNavigation.styled'
 
-const KeyboardNavigation: FC<KeyboardNavigationProps> = ({ top, opacity }) => {
+const KeyboardNavigation: FC<KeyboardNavigationProps> = ({ top, opacity, color }) => {
   const { Refs, visibility } = useContext(KeyboardNavigationContext)
   const { keysVisible, setKeysVisible } = visibility
 
@@ -121,6 +126,7 @@ const KeyboardNavigation: FC<KeyboardNavigationProps> = ({ top, opacity }) => {
       onClick={() => setKeysVisible((prev: boolean) => !prev)}
       top={top}
       opacity={keysVisible ? 0.8 : 0.3}
+      color={color}
     />
   )
 }
