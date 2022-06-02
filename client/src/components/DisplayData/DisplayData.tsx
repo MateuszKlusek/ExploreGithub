@@ -6,6 +6,7 @@ import axios from 'axios'
 import dateFormat from 'dateformat'
 import spinner from './spinnerAvatar.gif'
 
+// hooks
 import { useLocation } from 'react-router-dom'
 
 // components
@@ -13,7 +14,8 @@ import PalettePicker from './../PalettePicker/PalettePicker'
 import GoBack from '../GoBack/GoBack'
 import KeyboardIcon from '../KeyboardIcon/KeyboardIcon'
 import KeyboardNavigation from '../KeyboardNavigation/KeyboardNavigation'
-import Chart from '../Chart/Chart'
+import ChartBar from '../Charts/ChartBar/ChartBar'
+import ChartPie from '../Charts/ChartPie/ChartPie'
 
 // contexts
 import { PaletteContext } from './../../context/PaletteContext.js'
@@ -21,6 +23,7 @@ import { KeyboardNavigationContext } from '../../context/KeyboardNavigationConte
 
 // styles
 import * as S from './DisplayData.styled'
+import DoughnutChart from '../Charts/DoughnutChart/DoughnutChart'
 
 const DisplayData: React.FC<ISingleUserData> = (props) => {
   // get data from router (from Search component)
@@ -36,7 +39,6 @@ const DisplayData: React.FC<ISingleUserData> = (props) => {
 
   const avatarRef = useRef<HTMLImageElement>(null)
   const githubURLRef = useRef<HTMLDivElement>(null)
-  const githubURLArrowRef = useRef()
 
   useLayoutEffect(() => {
     if (avatarRef.current) {
@@ -101,9 +103,9 @@ const DisplayData: React.FC<ISingleUserData> = (props) => {
 
       <S.BottomContainer>
         <S.ChartsContainer>
-          <Chart type={"pie"} title={"Top Languages"} />
-          <Chart type={"pie"} title={"Most Starred"} />
-          <Chart type={"pie"} title={"Stars per Language"} />
+          <ChartPie title={"Top Languages"} data={state} />
+          <ChartBar title={"Most Starred"} data={state} />
+          <DoughnutChart title={"Stars per Language"} data={state} />
         </S.ChartsContainer>
       </S.BottomContainer>
     </S.DisplayDataContainer >

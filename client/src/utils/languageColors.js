@@ -1,4 +1,4 @@
-const LANGUAGE_COLORS = {
+export const LANGUAGE_COLORS = {
   Mercury: "#ff2b2b",
   TypeScript: "#2b7489",
   PureBasic: "#5a6986",

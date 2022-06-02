@@ -1,5 +1,7 @@
+// packages
 import axios from "axios";
-import { config } from "dotenv";
+
+// models
 import Profiles from "../../models/Profiles.js"
 
 
@@ -7,7 +9,6 @@ export const githubAPI = async (req, res) => {
     console.log("sinside github API route")
     const { profileQuery, mode, exists } = req.body
     console.log(profileQuery, mode, exists)
-
 
     try {
         const response1 = await axios({
@@ -18,12 +19,16 @@ export const githubAPI = async (req, res) => {
         const response2 = await axios({
             method: 'get',
             url: `https://api.github.com/users/${profileQuery}/repos`,
+            params: {
+                per_page: 100,
+                // page arguments in parags, it's like pagination
+                page: 1
+            }
         })
 
         // if there's already an entry in db, but we till want to change it (update it)
 
         // you can only get 30 repos max??????
-        console.log(response2.data)
 
         const profileURL_toCompare = response1.data.login.toLowerCase();
 
@@ -60,7 +65,6 @@ export const githubAPI = async (req, res) => {
             }
         }
 
-        // console.log("data to save", data_to_save)
         // upsert:true if there's no entry, if there is, replace is
         await Profiles.replaceOne({ profileURL_toCompare: profileURL_toCompare }, data_to_save, { upsert: true })
         // await data_to_save.save();

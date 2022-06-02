@@ -2,6 +2,6 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom'
 
 // component
-import Chart from "./Chart"
+import ChartPie from "./ChartPie"
 
 test.todo('add tests');

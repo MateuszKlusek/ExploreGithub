@@ -60,6 +60,6 @@ interface Ishape_straight {
 }
 
 interface ChartProps {
-  type: string
   title: string
+  data: any
 }
