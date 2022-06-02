@@ -16,6 +16,7 @@ import KeyboardIcon from '../KeyboardIcon/KeyboardIcon'
 import KeyboardNavigation from '../KeyboardNavigation/KeyboardNavigation'
 import ChartBar from '../Charts/ChartBar/ChartBar'
 import ChartPie from '../Charts/ChartPie/ChartPie'
+import DoughnutChart from '../Charts/DoughnutChart/DoughnutChart'
 
 // contexts
 import { PaletteContext } from './../../context/PaletteContext.js'
@@ -23,7 +24,7 @@ import { KeyboardNavigationContext } from '../../context/KeyboardNavigationConte
 
 // styles
 import * as S from './DisplayData.styled'
-import DoughnutChart from '../Charts/DoughnutChart/DoughnutChart'
+import TopRepos from '../TopRepos/TopRepos'
 
 const DisplayData: React.FC<ISingleUserData> = (props) => {
   // get data from router (from Search component)
@@ -31,12 +32,12 @@ const DisplayData: React.FC<ISingleUserData> = (props) => {
   const { state }: any = useLocation()
 
   // states
-  const { palette, setPalette } = useContext(PaletteContext)
-  const [githubAvatarUrl, setGithubAvaratURL] = useState('')
+  const { palette } = useContext(PaletteContext)
 
-  const { Refs, visibility } = useContext(KeyboardNavigationContext)
-  const { keysVisible, setKeysVisible } = visibility
+  const { visibility } = useContext(KeyboardNavigationContext)
+  const { keysVisible } = visibility
 
+  // refs
   const avatarRef = useRef<HTMLImageElement>(null)
   const githubURLRef = useRef<HTMLDivElement>(null)
 
@@ -102,11 +103,14 @@ const DisplayData: React.FC<ISingleUserData> = (props) => {
       </S.TopContainer >
 
       <S.BottomContainer>
+
         <S.ChartsContainer>
           <ChartPie title={"Top Languages"} data={state} />
           <ChartBar title={"Most Starred"} data={state} />
           <DoughnutChart title={"Stars per Language"} data={state} />
         </S.ChartsContainer>
+        <TopRepos data={state} />
+
       </S.BottomContainer>
     </S.DisplayDataContainer >
   )

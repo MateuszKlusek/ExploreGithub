@@ -83,7 +83,9 @@ export const StarsPerLanguageData = (data) => {
         else {
             // exclude "language === null" for repos that don't have languages specified
             if (repoLanguageName !== null) {
-                startPerLanguage[repoLanguageName] = repos[i].stargazers_count
+                if (repos[i].stargazers_count !== 0) {
+                    startPerLanguage[repoLanguageName] = repos[i].stargazers_count
+                }
             }
         }
     }

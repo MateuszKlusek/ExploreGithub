@@ -63,3 +63,11 @@ interface ChartProps {
   title: string
   data: any
 }
+
+interface TopReposProps {
+  data: any
+}
+
+interface TopReposSingleRepoProps {
+  data: any
+}

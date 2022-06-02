@@ -8,6 +8,10 @@ export const DisplayDataContainer = styled.div`
   height: 100%;
   display: grid;
   grid-template-rows: 500px 1fr;
+
+  @media ${device.tablet} {
+    grid-template-rows: 400px 1fr;
+  }
 `
 
 export const TopContainer = styled.div`
@@ -19,6 +23,11 @@ export const TopContainer = styled.div`
   border-bottom: 1px solid black;
   padding-bottom: 20px;
   background: rgb(26, 30, 34);
+
+  @media ${device.tablet} {
+    min-height: 400px;
+    max-height: 400px;
+  }
 `
 
 export const BottomContainer = styled.div`
@@ -27,15 +36,18 @@ export const BottomContainer = styled.div`
 `
 
 export const ChartsContainer = styled.div`
-margin-top: -20px;
+    margin-top: -20px;
   width: auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(330px, max-content));
   gap: 20px;
   place-items: center;
- 
   justify-content: center;    
   padding: 0 auto;
+
+  @media ${device.tablet} {
+    margin-top: -40px;
+  }
 
 `
 
