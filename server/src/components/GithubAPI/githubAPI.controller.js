@@ -10,21 +10,52 @@ export const githubAPI = async (req, res) => {
     const { profileQuery, mode, exists } = req.body
     console.log(profileQuery, mode, exists)
 
+    var reposResponseDone = false
+    var page = 1
+    var allReposData = []
     try {
         const response1 = await axios({
             method: 'get',
             url: `https://api.github.com/users/${profileQuery}`,
         })
 
-        const response2 = await axios({
-            method: 'get',
-            url: `https://api.github.com/users/${profileQuery}/repos`,
-            params: {
-                per_page: 100,
-                // page arguments in parags, it's like pagination
-                page: 1
+        // to catch all repos with pagination
+
+        while (!reposResponseDone) {
+            try {
+                console.log(`============================ PAGE ${page}=======================================`)
+                const response2 = await axios({
+                    method: 'get',
+                    url: `https://api.github.com/users/${profileQuery}/repos`,
+                    params: {
+                        per_page: 100,
+                        // page arguments in parags, it's like pagination
+                        page: page
+                    }
+                })
+
+                //  to exclude the case then the previous fetch was of length of 100 and the next one is 0 (repos%100 = 0)
+                if (response2.data.length > 0) {
+                    allReposData = [...allReposData, ...response2.data]
+                } else {
+                    reposResponseDone = true
+                }
+
+                // stop further search if current length of reponse is smaller than 100
+                if (response2.data.length < 100) {
+                    reposResponseDone = true
+                }
+                page += 1
+            } catch (err2) {
+                console.log("error", err2)
+                // if error, stop further fatching
+                reposResponseDone = true
             }
-        })
+        }
+
+
+
+
 
         // if there's already an entry in db, but we till want to change it (update it)
 
@@ -55,7 +86,7 @@ export const githubAPI = async (req, res) => {
             updated_at: response1.data.updated_at,
 
             scraped_at: new Date(),
-            repos: response2.data
+            repos: allReposData
         }
 
         // clean data
@@ -72,7 +103,7 @@ export const githubAPI = async (req, res) => {
 
         // save data and send the save data to client
 
-        console.log(data_to_save)
+        console.log("alldatalength", allReposData.length)
         // res.send({status: "found",  data1: response1.data, data2: response2.data})
         res.send({ status: "found", data: data_to_save })
     } catch (err) {

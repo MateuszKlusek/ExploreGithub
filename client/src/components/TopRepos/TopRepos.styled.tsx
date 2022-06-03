@@ -27,12 +27,20 @@ export const Container = styled.div`
 `
 
 export const Title = styled.div`
+
     width: fit-content;
     font-size: 26px;
     background-image: linear-gradient(90deg, rgb(163, 164, 165) 50%, rgba(255, 255, 255, 0) 0px);
     background-position: center bottom;
     background-repeat: repeat-x;
     background-size: 12px 2px;
-
-    
 `
+
+export const Subtitle = styled.div`
+    font-size: 14px;
+    padding-top: 5px;
+    letter-spacing: 0.5px;
+    color: #726d79;
+`
+
+

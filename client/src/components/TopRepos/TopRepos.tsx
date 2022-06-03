@@ -25,6 +25,7 @@ const TopRepos: FC<TopReposProps> = ({ data }) => {
     return (
         <S.TopReposContainer>
             <S.Title>Top Repos</S.Title>
+            <S.Subtitle> with specified languages</S.Subtitle>
             <S.Container>
                 {reposData.map((el: any, idx: any) => (
                     <TopReposSingleRepo key={idx} data={el} />

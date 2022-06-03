@@ -89,7 +89,6 @@ export const StarsPerLanguageData = (data) => {
             }
         }
     }
-    console.log(startPerLanguage)
 
     // labels
     var labels = []
@@ -111,7 +110,6 @@ export const StarsPerLanguageData = (data) => {
         colors.push(LANGUAGE_COLORS[prop])
     }
 
-    console.log(labels, datasetData, colors)
 
     return { labels, datasetData, colors }
 }
