@@ -1,3 +1,4 @@
+// @ts-nocheck
 // react
 import { useContext, useRef, useEffect } from 'react'
 

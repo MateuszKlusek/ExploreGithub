@@ -2,8 +2,6 @@
 import {
   useState,
   useEffect,
-  useContext,
-  useRef,
   memo,
 } from 'react'
 
@@ -17,7 +15,7 @@ import SingleUser from '../SingleUser/SingleUser'
 import * as S from './Latest.styled'
 
 // helpers
-import { axiosURL } from '../../config/axios.js'
+import { axiosURL } from '../../config/axios'
 
 const Latest = memo((props) => {
   // styles

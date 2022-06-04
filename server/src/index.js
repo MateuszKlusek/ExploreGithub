@@ -9,9 +9,11 @@ import { mongoose } from "./config/mongoDB.js"
 
 // variables
 const PORT = process.env.PORT || 5001;
+const ORIGIN = "http://localhost:3000"
+// const ORIGIN = "http://multiplecountdowns.com:3000"
 
 // middleweares
-app.use(cors({ origin: "http://localhost:3000" }))
+app.use(cors({ origin: ORIGIN }))
 app.use(express.json())
 
 // routes

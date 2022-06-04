@@ -6,7 +6,7 @@ import gsap from 'gsap'
 import axios from 'axios'
 import hexRgb from 'hex-rgb'
 
-import { axiosURL } from '../../config/axios.js'
+import { axiosURL } from '../../config/axios'
 
 // context
 import { SearchContext } from '../../context/SearchContext.js'

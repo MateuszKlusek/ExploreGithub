@@ -163,13 +163,13 @@ const PalettePicker = () => {
   }, [paletteAnimationEnabled])
 
   // populating array with the rest of the palette that doesn't mach current palette
-  var restOfColors = []
+  var restOfColors: any = []
   for (const [_, value] of Object.entries(paletteColors)) {
     if (JSON.stringify(value) !== JSON.stringify(palette)) {
       restOfColors.push({ value })
     }
   }
-  let restOfPalett = []
+  let restOfPalett: any = []
   let counter = 0
   for (var el in restOfColors) {
     const value = restOfColors[el].value
