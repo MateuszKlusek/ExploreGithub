@@ -12,6 +12,11 @@ export const DisplayDataContainer = styled.div`
   @media ${device.tablet} {
     grid-template-rows: 400px 1fr;
   }
+
+  @media ${device.mobileL} {
+    grid-template-rows: 450px 1fr;
+  }
+
 `
 
 export const TopContainer = styled.div`
@@ -24,10 +29,12 @@ export const TopContainer = styled.div`
   padding-bottom: 20px;
   background: rgb(26, 30, 34);
 
-  @media ${device.tablet} {
-    min-height: 400px;
-    max-height: 400px;
+  @media ${device.mobileL} {
+    min-height: 500px;
+    max-height: 500px;
   }
+
+
 `
 
 export const BottomContainer = styled.div`
@@ -47,6 +54,10 @@ export const ChartsContainer = styled.div`
 
   @media ${device.tablet} {
     margin-top: -40px;
+  }
+
+  @media ${device.mobileL} {
+    margin-top: 40px;
   }
 
 `

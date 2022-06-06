@@ -1,7 +1,6 @@
 // @ts-nocheck
 // react
 import { useContext, useRef, useEffect } from 'react'
-
 // styles
 import * as S from './SingleUser.styled'
 
@@ -50,6 +49,7 @@ const GithubNameLoader: React.FC<GithubNameLoaderProps> = ({ size }) => (
 )
 
 const SingleUser: React.FC<ISingleUserData> = ({ data }) => {
+  console.log(data);
 
   // states
   const { palette } = useContext(PaletteContext)
@@ -97,9 +97,11 @@ const SingleUser: React.FC<ISingleUserData> = ({ data }) => {
       green={hexRgb(palette.color2).green}
       blue={hexRgb(palette.color2).blue}
       onClick={() => {
-        setKeysVisible(false)
-        gsap.globalTimeline.getChildren().forEach((t) => t.kill())
-        navigate('display', { state: data })
+        if (Object.keys(data).length !== 0) {
+          setKeysVisible(false)
+          gsap.globalTimeline.getChildren().forEach((t) => t.kill())
+          navigate('display', { state: data })
+        }
       }}
     >
       <S.GithubUserIcon ref={GithubIconRef} />
