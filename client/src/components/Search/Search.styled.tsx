@@ -197,6 +197,23 @@ export const Ball = styled.div`
   opacity: 0.8;
 `
 
+export const TextGithubAPI = styled.div`
+  cursor: default;
+  position: absolute;
+  left: -120px;
+  top: 5px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.7;
+  color: #596eb3;
+  font-weight: 700;
+`
+
+export const TextScraper = styled(TextGithubAPI)`
+  left: 100px;
+`
+
 //////////////////////////////////////////////////////////////////////////////////////////////
 
 export const SearchButton = styled.button`

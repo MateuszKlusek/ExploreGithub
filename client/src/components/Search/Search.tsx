@@ -366,7 +366,15 @@ function Search() {
           }}
           ref={switcherRef}
         >
+
           <S.Ball color={palette.color2} ref={switchBubbleRef} />
+
+          <S.TextGithubAPI onClick={(e) => {
+            e.stopPropagation();
+          }}>Github API</S.TextGithubAPI>
+          <S.TextScraper onClick={(e) => {
+            e.stopPropagation();
+          }}>Scraper</S.TextScraper>
 
           {keysVisible && (
             <KeyboardIcon
