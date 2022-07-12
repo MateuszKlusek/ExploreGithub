@@ -98,11 +98,8 @@ export const githubAPI = async (req, res) => {
 
         // upsert:true if there's no entry, if there is, replace is
         await Profiles.replaceOne({ profileURL_toCompare: profileURL_toCompare }, data_to_save, { upsert: true })
-        // await data_to_save.save();
-
 
         // save data and send the save data to client
-
         console.log("alldatalength", allReposData.length)
         // res.send({status: "found",  data1: response1.data, data2: response2.data})
         res.send({ status: "found", data: data_to_save })

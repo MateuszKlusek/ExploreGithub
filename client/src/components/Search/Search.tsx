@@ -330,7 +330,7 @@ function Search() {
           )}
         </S.Icon>
 
-        <S.Title>Browse Github</S.Title>
+        <S.Title>Explore Github </S.Title>
 
         <S.SearchFieldContainer>
           <S.SearchField

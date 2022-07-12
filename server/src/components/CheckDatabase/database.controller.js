@@ -1,9 +1,6 @@
 // models
 import Profiles from "../../models/Profiles.js"
 
-// helpers
-import { sleep } from "./../../helpers/sleep.js"
-
 export const checkDatabase = async (req, res) => {
     const { profileQuery, mode } = req.body
     try {

@@ -1,3 +1,4 @@
+import Profiles from "../../models/Profiles.js"
 import { scrape } from "./../../helpers/scraper.js"
 
 export const scraperGithub = async (req, res) => {
@@ -5,6 +6,10 @@ export const scraperGithub = async (req, res) => {
 
     try {
         const data = await scrape(profileQuery)
+
+        // save data to database
+        await Profiles.replaceOne({ profileURL_toCompare: profileQuery.toLowerCase() }, data, { upsert: true })
+
         res.send({ status: "found", data: data })
     }
     catch (err) {

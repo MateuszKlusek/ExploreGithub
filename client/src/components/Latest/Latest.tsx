@@ -28,9 +28,14 @@ const Latest = memo((props) => {
 
 
   const getLatestThree = async () => {
+    console.log(`${axiosURL}/getLatestThree`);
     const response = await axios({
       method: 'get',
       url: `${axiosURL}/getLatestThree`,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json',
+      },
     })
     setLatestThree(response.data.data)
   }
