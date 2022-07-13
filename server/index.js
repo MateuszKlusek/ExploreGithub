@@ -13,7 +13,6 @@ import { mongoose } from "./src/config/mongoDB.js"
 const PORT = process.env.PORT || 5001;
 const ORIGINS = ["https://www.exploregithub.com", "http://www.exploregithub.com", "https://139.177.183.132:5001", "http://139.177.183.132:5001", "http://localhost:3000"]
 
-
 // create a write stream (in append mode)
 const serverPath = process.cwd()
 var accessLogStream = fs.createWriteStream(`${serverPath}/src/logs/access.log`, { flags: 'a' })

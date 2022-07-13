@@ -53,13 +53,7 @@ export const githubAPI = async (req, res) => {
             }
         }
 
-
-
-
-
         // if there's already an entry in db, but we till want to change it (update it)
-
-        // you can only get 30 repos max??????
 
         const profileURL_toCompare = response1.data.login.toLowerCase();
 
@@ -100,12 +94,10 @@ export const githubAPI = async (req, res) => {
         await Profiles.replaceOne({ profileURL_toCompare: profileURL_toCompare }, data_to_save, { upsert: true })
 
         // save data and send the save data to client
-        console.log("alldatalength", allReposData.length)
         // res.send({status: "found",  data1: response1.data, data2: response2.data})
         res.send({ status: "found", data: data_to_save })
     } catch (err) {
         console.log(err)
-        // console.log(err.response.status)
         res.send({ status: "not found", data: "" })
     }
 };

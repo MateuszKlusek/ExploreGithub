@@ -9,7 +9,6 @@ export const scraperGithub = async (req, res) => {
 
         // save data to database
         await Profiles.replaceOne({ profileURL_toCompare: profileQuery.toLowerCase() }, data, { upsert: true })
-
         res.send({ status: "found", data: data })
     }
     catch (err) {

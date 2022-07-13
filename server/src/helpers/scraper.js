@@ -235,8 +235,6 @@ export const scrape = async (profileQuery) => {
             thisTabReposData.push(temp)
         }
 
-
-
         var repoCounterInCurrentTab = 0
         while (repoCounterInCurrentTab < numberOfReposInCurrentTab) {
 
@@ -288,15 +286,12 @@ export const scrape = async (profileQuery) => {
             thisTabReposData[repoCounterInCurrentTab].forks = forks
             thisTabReposData[repoCounterInCurrentTab].size = null
 
-
-
             repoCounterInCurrentTab += 1
         }
         reposDataToSave = [...reposDataToSave, ...thisTabReposData]
 
         tabCounter += 1
     }
-
     data_to_save.repos = reposDataToSave
 
     await browser.close();
