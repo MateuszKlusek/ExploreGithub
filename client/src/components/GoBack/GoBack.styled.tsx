@@ -6,6 +6,7 @@ export const GoBackContainer = styled.div`
   left: 0px;
   width: 70px;
   height: 50px;
+  cursor: pointer;
 `;
 
 export const SVG = styled.svg`
@@ -13,5 +14,5 @@ export const SVG = styled.svg`
 `;
 
 export const Line = styled.polyline`
-  cursor: pointer;
+
 `;

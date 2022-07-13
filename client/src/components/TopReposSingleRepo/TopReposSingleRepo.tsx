@@ -32,7 +32,9 @@ const TopReposSingleRepo: FC<TopReposSingleRepoProps> = ({ data }) => {
                 <S.ForkIconImg src={FileFork} alt="fork icon"></S.ForkIconImg>
                 <S.ForkText>{data.forks}</S.ForkText>
             </S.Forks>
-            <S.Size>{data.size !== null && `${formatSize(data.size)} KB`} </S.Size>
+            {data.size !== null &&
+                <S.Size> {`${formatSize(data.size)} KB`} </S.Size>
+            }
 
         </S.ButtomIconContainer>
 

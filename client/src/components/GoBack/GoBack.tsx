@@ -49,16 +49,16 @@ const GoBack: React.FC<GoBackProps> = ({ color }) => {
   }
 
   return (
-    <S.GoBackContainer className="type" ref={arrowRef}>
+    <S.GoBackContainer className="type" ref={arrowRef} onClick={() => {
+      animateGoingBack()
+    }}>
       <S.SVG viewBox="0 0 70 50" fill="none">
         <S.Line
           points="42,2 24,20 42,38"
           stroke={color}
           strokeWidth="5"
           ref={SVGRef}
-          onClick={() => {
-            animateGoingBack()
-          }}
+
         />
       </S.SVG>
     </S.GoBackContainer>
